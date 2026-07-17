@@ -56,7 +56,7 @@ export const About = memo(function About({ owner }: AboutProps) {
                   ? `url(${owner.avatar}) center/cover`
                   : 'linear-gradient(135deg, var(--accent), var(--sys-pink), var(--sys-teal))',
                 border: '3px solid rgba(255,255,255,0.15)',
-                boxShadow: '0 0 30px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.08)',
+                boxShadow: '0 0 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.08)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -104,7 +104,7 @@ export const About = memo(function About({ owner }: AboutProps) {
                     style={{
                       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                       width: 36, height: 36, borderRadius: '50%',
-                      background: 'rgba(168,85,247,0.08)', border: '1px solid var(--glass-border)',
+                      background: 'rgba(0,0,0,0.04)', border: '1px solid var(--glass-border)',
                       color: 'var(--text-secondary)',
                       transition: 'all var(--duration-fast) var(--ease-out)',
                     }}

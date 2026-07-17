@@ -17,7 +17,7 @@ function iconMap(name?: string): LucideIcon {
 type StatusKey = NonNullable<Project['status']>
 const statusConfig: Record<StatusKey, { label: string; color: string; bg: string }> = {
   ongoing: { label: '进行中', color: 'var(--sys-teal)', bg: 'rgba(6,182,212,0.12)' },
-  completed: { label: '已完成', color: 'var(--accent)', bg: 'rgba(168,85,247,0.12)' },
+  completed: { label: '已完成', color: 'var(--accent)', bg: 'rgba(0,0,0,0.05)' },
   archived: { label: '已归档', color: 'var(--text-tertiary)', bg: 'rgba(96,96,120,0.12)' },
 }
 
@@ -67,7 +67,7 @@ export const Projects = memo(function Projects({ projects }: ProjectsProps) {
                     padding: '4px 12px', borderRadius: 'var(--radius-pill)',
                     fontSize: 'var(--text-xs)', fontWeight: 600, color: 'var(--text-inverse)',
                     background: 'linear-gradient(135deg, var(--accent), var(--sys-pink))',
-                    boxShadow: '0 2px 12px rgba(168,85,247,0.5)',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.12)',
                   }}>★ 置顶</span>
                 )}
                 {status && (
@@ -94,7 +94,7 @@ export const Projects = memo(function Projects({ projects }: ProjectsProps) {
                     {p.tags.map((t, ti) => (
                       <span key={ti} style={{
                         fontSize: 'var(--text-xs)', padding: '2px 10px', borderRadius: 'var(--radius-pill)',
-                        background: 'rgba(168,85,247,0.12)', color: 'var(--accent)', fontWeight: 500,
+                        background: 'rgba(0,0,0,0.05)', color: 'var(--accent)', fontWeight: 500,
                       }}>{t}</span>
                     ))}
                   </div>

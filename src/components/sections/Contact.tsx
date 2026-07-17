@@ -62,7 +62,7 @@ export const Contact = memo(function Contact({ owner }: ContactProps) {
                   display: 'flex', alignItems: 'center', gap: 'var(--space-3)',
                   padding: 'var(--space-3) var(--space-4)',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(168,85,247,0.06)',
+                  background: 'rgba(0,0,0,0.03)',
                   border: '1px solid var(--glass-border)',
                 }}>
                   <div style={{
@@ -92,7 +92,7 @@ export const Contact = memo(function Contact({ owner }: ContactProps) {
                       style={{
                         flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 4,
                         padding: '4px 10px', fontSize: 'var(--text-xs)', borderRadius: 'var(--radius-pill)',
-                        border: '1px solid var(--glass-border)', background: 'rgba(168,85,247,0.08)',
+                        border: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.04)',
                         color: isCopied ? 'var(--sys-teal)' : 'var(--text-secondary)',
                         cursor: 'pointer', transition: 'all var(--duration-fast) var(--ease-out)',
                         fontFamily: 'var(--font-sans)',

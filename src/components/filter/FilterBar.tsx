@@ -44,7 +44,7 @@ export const FilterBar = memo(function FilterBar({ tracks, onFilter }: FilterBar
         ...chipBase,
         background: selectedTags.length === 0
           ? 'linear-gradient(135deg, var(--accent), var(--accent-dark))'
-          : 'rgba(168,85,247,0.08)',
+          : 'rgba(0,0,0,0.04)',
         color: selectedTags.length === 0 ? 'var(--text-inverse)' : 'var(--text-secondary)',
         borderColor: selectedTags.length === 0 ? 'transparent' : 'var(--glass-border)',
       }}>
@@ -57,7 +57,7 @@ export const FilterBar = memo(function FilterBar({ tracks, onFilter }: FilterBar
             ...chipBase,
             background: selected
               ? 'linear-gradient(135deg, var(--accent), var(--accent-dark))'
-              : 'rgba(168,85,247,0.08)',
+              : 'rgba(0,0,0,0.04)',
             color: selected ? 'var(--text-inverse)' : 'var(--text-secondary)',
             borderColor: selected ? 'transparent' : 'var(--glass-border)',
           }}>

@@ -1,8 +1,8 @@
 import { memo } from 'react'
 
 /**
- * 全屏动态渐变背景 — 暮光紫夜 v2
- * 4 个大型径向渐变光晕，紫/品红/蓝/青 缓慢漂移
+ * 全屏动态渐变背景 — 极简白灰 v3
+ * 4 个极淡灰色渐变光晕，几乎不可见
  */
 export const Background = memo(function Background() {
   return (
@@ -17,7 +17,6 @@ export const Background = memo(function Background() {
         background: 'var(--bg-base)',
       }}
     >
-      {/* 4 个光晕 */}
       <div
         className="bg-blob bg-blob-1"
         style={{
@@ -26,7 +25,7 @@ export const Background = memo(function Background() {
           height: '65vw',
           top: '-20vw',
           left: '-12vw',
-          background: `radial-gradient(circle, rgba(124, 58, 237, 0.35) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%)`,
           filter: 'blur(50px)',
           borderRadius: '50%',
         }}
@@ -39,7 +38,7 @@ export const Background = memo(function Background() {
           height: '55vw',
           top: '15vw',
           right: '-15vw',
-          background: `radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%)`,
           filter: 'blur(50px)',
           borderRadius: '50%',
         }}
@@ -52,7 +51,7 @@ export const Background = memo(function Background() {
           height: '50vw',
           bottom: '-12vw',
           left: '15vw',
-          background: `radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%)`,
           filter: 'blur(50px)',
           borderRadius: '50%',
         }}
@@ -65,43 +64,30 @@ export const Background = memo(function Background() {
           height: '45vw',
           top: '35vh',
           left: '35vw',
-          background: `radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, transparent 70%)`,
+          background: `radial-gradient(circle, rgba(0,0,0,0.02) 0%, transparent 70%)`,
           filter: 'blur(50px)',
           borderRadius: '50%',
         }}
       />
 
-      {/* 星点噪点纹理：模拟星空 */}
-      <svg
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <filter id="grain">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#grain)" opacity="0.05" />
-      </svg>
-
-      {/* 动画关键帧 */}
       <style>{`
         @keyframes blobFloat1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(10vw, 6vh) scale(1.08); }
-          66% { transform: translate(-5vw, 10vh) scale(0.93); }
+          33% { transform: translate(8vw, 4vh) scale(1.05); }
+          66% { transform: translate(-4vw, 6vh) scale(0.96); }
         }
         @keyframes blobFloat2 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(-8vw, -5vh) scale(0.93); }
-          66% { transform: translate(5vw, 8vh) scale(1.07); }
+          33% { transform: translate(-6vw, -3vh) scale(0.96); }
+          66% { transform: translate(4vw, 5vh) scale(1.04); }
         }
         @keyframes blobFloat3 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(8vw, -10vh) scale(1.1); }
+          50% { transform: translate(6vw, -6vh) scale(1.06); }
         }
         @keyframes blobFloat4 {
           0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-10vw, 5vh) scale(0.9); }
+          50% { transform: translate(-6vw, 3vh) scale(0.94); }
         }
         .bg-blob-1 { animation: blobFloat1 30s var(--ease-in-out) infinite; }
         .bg-blob-2 { animation: blobFloat2 34s var(--ease-in-out) infinite; }

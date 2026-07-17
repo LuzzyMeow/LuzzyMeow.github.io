@@ -57,7 +57,7 @@ export const Posts = memo(function Posts({ posts }: PostsProps) {
                   {post.tags?.map((t, ti) => (
                     <span key={ti} style={{
                       fontSize: 'var(--text-xs)', padding: '2px 8px', borderRadius: 'var(--radius-pill)',
-                      background: 'rgba(168,85,247,0.12)', color: 'var(--accent)', fontWeight: 500,
+                      background: 'rgba(0,0,0,0.05)', color: 'var(--accent)', fontWeight: 500,
                     }}>{t}</span>
                   ))}
                   {typeof post.readingTime === 'number' && (

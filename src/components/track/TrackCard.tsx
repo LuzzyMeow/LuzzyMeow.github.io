@@ -94,7 +94,7 @@ export const TrackCard = memo(function TrackCard({ track, isCurrent = false, isP
               {track.tags.slice(0, 3).map((tag) => (
                 <span key={tag} style={{
                   fontSize: 'var(--text-xs)', padding: '1px var(--space-2)', borderRadius: 'var(--radius-pill)',
-                  background: 'rgba(168,85,247,0.12)', color: 'var(--accent)', whiteSpace: 'nowrap',
+                  background: 'rgba(0,0,0,0.05)', color: 'var(--accent)', whiteSpace: 'nowrap',
                 }}>{tag}</span>
               ))}
             </div>
@@ -114,7 +114,7 @@ export const TrackCard = memo(function TrackCard({ track, isCurrent = false, isP
             width: 36, height: 36, borderRadius: 'var(--radius-pill)', border: 'none',
             background: isCurrent && isPlaying
               ? 'linear-gradient(135deg, var(--accent), var(--accent-dark))'
-              : 'rgba(168,85,247,0.1)',
+              : 'rgba(0,0,0,0.04)',
             color: isCurrent && isPlaying ? 'var(--text-inverse)' : 'var(--accent)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', transition: 'all var(--duration-fast) var(--ease-out)',
@@ -130,7 +130,7 @@ export const TrackCard = memo(function TrackCard({ track, isCurrent = false, isP
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer', transition: 'all var(--duration-fast) var(--ease-out)',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(168,85,247,0.1)'; e.currentTarget.style.color = 'var(--text-primary)' }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.04)'; e.currentTarget.style.color = 'var(--text-primary)' }}
           onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)' }}>
           {hasLossless ? <ExternalLink size={16} /> : <Download size={16} />}
         </button>

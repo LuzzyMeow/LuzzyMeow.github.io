@@ -1,63 +1,62 @@
 /* ========================================================================
-   LuzzyMeow · Design Tokens  v2
-   暮光紫夜 · 深色渐变玻璃主题
+   LuzzyMeow · Design Tokens  v3
+   极简白灰 · 现代干净风格
    ======================================================================== */
 
 :root {
-  /* ---- 背景层 (深色底) ---- */
-  --bg-base: #0a0a18;                  /* 深邃夜空底色 */
-  --bg-gradient-1: #7c3aed;            /* 紫罗兰 */
-  --bg-gradient-2: #ec4899;            /* 品红 */
-  --bg-gradient-3: #3b82f6;            /* 亮蓝 */
-  --bg-gradient-4: #06b6d4;            /* 青 */
+  /* ---- 背景层 ---- */
+  --bg-base: #ffffff;
+  --bg-gradient-1: #e8e8ec;            /* 极淡灰 */
+  --bg-gradient-2: #dcdce2;
+  --bg-gradient-3: #e2e2e8;
+  --bg-gradient-4: #eeeef2;
 
-  /* ---- 玻璃层 (深色半透明) ---- */
-  --glass-bg: rgba(15, 15, 35, 0.55);
-  --glass-bg-hover: rgba(20, 20, 50, 0.75);
-  --glass-bg-strong: rgba(12, 12, 30, 0.82);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-inner: rgba(255, 255, 255, 0.12);
-  --glass-border-accent: rgba(168, 85, 247, 0.3);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --glass-shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.6);
-  --glass-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  --glass-blur: 24px;
-  --glass-blur-strong: 48px;
-  --glass-saturation: 120%;
+  /* ---- 玻璃层 (白底不同透明度) ---- */
+  --glass-bg: rgba(255, 255, 255, 0.60);
+  --glass-bg-hover: rgba(255, 255, 255, 0.85);
+  --glass-bg-strong: rgba(255, 255, 255, 0.80);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-border-inner: rgba(0, 0, 0, 0.04);
+  --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --glass-shadow-strong: 0 8px 40px rgba(0, 0, 0, 0.10);
+  --glass-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-blur: 20px;
+  --glass-blur-strong: 40px;
+  --glass-saturation: 100%;
 
   /* ---- 文字 ---- */
-  --text-primary: #f0f0f5;
-  --text-secondary: #a0a0b8;
-  --text-tertiary: #606078;
-  --text-on-glass: rgba(240, 240, 245, 0.95);
-  --text-inverse: #0a0a18;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-tertiary: #999999;
+  --text-on-glass: rgba(17, 17, 17, 0.95);
+  --text-inverse: #ffffff;
 
-  /* ---- 强调色 (紫蓝渐变) ---- */
-  --accent: #a855f7;
-  --accent-hover: #c084fc;
-  --accent-active: #9333ea;
-  --accent-dark: #7c3aed;
-  --accent-soft: rgba(168, 85, 247, 0.15);
-  --accent-glow: 0 0 20px rgba(168, 85, 247, 0.4);
-  --accent-glow-strong: 0 0 40px rgba(168, 85, 247, 0.6);
-  --accent-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
-  --accent-shadow-hover: 0 4px 24px rgba(168, 85, 247, 0.6);
+  /* ---- 强调色 (纯黑) ---- */
+  --accent: #111111;
+  --accent-hover: #333333;
+  --accent-active: #000000;
+  --accent-dark: #000000;
+  --accent-soft: rgba(0, 0, 0, 0.06);
+  --accent-glow: 0 0 20px rgba(0, 0, 0, 0.08);
+  --accent-glow-strong: 0 0 40px rgba(0, 0, 0, 0.12);
+  --accent-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+  --accent-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
 
   /* ---- 系统色 ---- */
-  --sys-red: #ff3b30;
-  --sys-green: #34c759;
-  --sys-orange: #ff9500;
-  --sys-yellow: #ffcc00;
-  --sys-pink: #ec4899;
-  --sys-purple: #a855f7;
-  --sys-teal: #06b6d4;
+  --sys-red: #e04444;
+  --sys-green: #2ea043;
+  --sys-orange: #d97706;
+  --sys-yellow: #ca8a04;
+  --sys-pink: #d9467c;
+  --sys-purple: #7c3aed;
+  --sys-teal: #0891b2;
 
   /* ---- 圆角 ---- */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-2xl: 36px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-pill: 9999px;
 
   /* ---- 间距 ---- */
@@ -111,7 +110,7 @@
 
   /* ---- 频谱可视化 ---- */
   --visualizer-bar-count: 64;
-  --visualizer-color-1: #a855f7;
-  --visualizer-color-2: #ec4899;
-  --visualizer-color-3: #06b6d4;
+  --visualizer-color-1: #111111;
+  --visualizer-color-2: #555555;
+  --visualizer-color-3: #999999;
 }

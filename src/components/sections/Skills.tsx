@@ -72,15 +72,15 @@ export const Skills = memo(function Skills({ skills }: SkillsProps) {
                     {hasLevel && (
                       <div style={{
                         height: 6, borderRadius: 'var(--radius-pill)',
-                        background: 'rgba(168,85,247,0.1)', overflow: 'hidden',
-                        border: '1px solid rgba(168,85,247,0.15)',
+                        background: 'rgba(0,0,0,0.04)', overflow: 'hidden',
+                        border: '1px solid rgba(0,0,0,0.06)',
                       }}>
                         <div style={{
                           width: `${level}%`, height: '100%', borderRadius: 'var(--radius-pill)',
                           background: item.isHobby
                             ? 'linear-gradient(90deg, var(--sys-pink), var(--accent))'
                             : 'linear-gradient(90deg, var(--accent), var(--sys-teal))',
-                          boxShadow: '0 0 8px rgba(168,85,247,0.4)',
+                          boxShadow: '0 0 8px rgba(0,0,0,0.10)',
                           transition: 'width var(--duration-slow) var(--ease-out)',
                         }} />
                       </div>
