@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "owner": {
+    "name": "LuzzyMeow",
+    "bio": "Vocal Cover · Original Music · Code & Life",
+    "avatar": "",
+    "about": [
+      "你好，我是 LuzzyMeow。",
+      "一个喜欢翻唱与原创的音乐爱好者，也写代码、做项目。",
+      "在这里你可以听到我的作品，看到我的项目，读到我的随笔，欢迎与我联系。"
+    ],
+    "location": "中国",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/LuzzyMeow", "icon": "Github" },
+      { "label": "B站", "url": "https://space.bilibili.com/", "icon": "Youtube" }
+    ],
+    "contact": {
+      "email": "i@luzzymeow.github.io",
+      "wechat": "",
+      "qq": "",
+      "telegram": "",
+      "discord": "",
+      "others": []
+    }
+  },
+  "skills": [
+    {
+      "category": "音乐",
+      "items": [
+        { "name": "翻唱", "level": 75, "isHobby": true },
+        { "name": "原创", "level": 50, "isHobby": true },
+        { "name": "混音", "level": 40, "isHobby": true }
+      ]
+    },
+    {
+      "category": "编程",
+      "items": [
+        { "name": "Go", "level": 85 },
+        { "name": "TypeScript", "level": 75 },
+        { "name": "Python", "level": 70 }
+      ]
+    },
+    {
+      "category": "兴趣",
+      "items": [
+        { "name": "Anime", "isHobby": true },
+        { "name": "Game", "isHobby": true },
+        { "name": "Photography", "isHobby": true }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "demo-welcome",
+      "title": "Welcome (Demo)",
+      "originalArtist": "LuzzyMeow",
+      "date": "2026-07-15",
+      "src": "/audio/demo-welcome.mp3",
+      "lyrics": "/lyrics/demo-welcome.lrc",
+      "tags": ["原创", "Demo", "Instrumental"],
+      "language": "other",
+      "genre": "original",
+      "note": "占位示例曲目，替换 public/audio/ 下文件并编辑 site.json 即可",
+      "download": {
+        "mp3": "/audio/demo-welcome.mp3",
+        "lossless": "",
+        "losslessLabel": ""
+      }
+    }
+  ],
+  "albums": [],
+  "projects": [
+    {
+      "id": "proj-luzzymeow-homepage",
+      "title": "LuzzyMeow 个人主页",
+      "description": "液态玻璃风格的综合性个人主页，含作品集播放器、项目展示、随笔、时间线等模块。基于 Vite + React + TS + Tailwind，部署于 GitHub Pages。",
+      "links": [
+        { "label": "站点", "url": "https://luzzymeow.github.io/" },
+        { "label": "GitHub", "url": "https://github.com/LuzzyMeow/LuzzyMeow.github.io" }
+      ],
+      "tags": ["React", "TypeScript", "Vite", "Tailwind", "Liquid Glass"],
+      "startDate": "2026-07",
+      "status": "ongoing",
+      "featured": true
+    }
+  ],
+  "posts": [
+    {
+      "id": "post-hello",
+      "title": "Hello, World",
+      "excerpt": "这是第一篇随笔，欢迎来到我的个人主页。",
+      "date": "2026-07-15",
+      "tags": ["随笔", "开篇"],
+      "readingTime": 1
+    }
+  ],
+  "timeline": [
+    {
+      "id": "tl-2026-07-15",
+      "date": "2026-07-15",
+      "title": "个人主页上线",
+      "description": "基于 GitHub Pages 部署的液态玻璃风格个人主页正式上线。",
+      "type": "milestone"
+    }
+  ],
+  "friends": []
+}

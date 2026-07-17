@@ -1,0 +1,9 @@
+[ti:Welcome (Demo)]
+[ar:LuzzyMeow]
+[al:Demo]
+[00:00.00]欢迎使用 LuzzyMeow 翻唱主页
+[00:03.00]这是一首占位示例曲目
+[00:06.00]请替换 public/audio/ 下的 MP3 文件
+[00:09.00]并编辑 manifest.json 添加你的元数据
+[00:12.00]LRC 同步歌词将自动滚动
+[00:15.00]享受液态玻璃音乐播放器

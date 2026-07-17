@@ -1,0 +1,188 @@
+/* ========================================================================
+   LuzzyMeow · Liquid Glass Core  v2
+   深色玻璃拟态：暗底半透明 + 紫调边框 + 柔和微光
+   ======================================================================== */
+
+/* ---- 基础玻璃容器 ---- */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-shadow),
+    var(--glass-shadow-inset);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 微光高光：顶部弱白渐变 */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.01) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+/* 紫调边缘微光 */
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.25),
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(99, 102, 241, 0.15)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 玻璃容器内容置于伪元素之上 */
+.glass > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- 强玻璃 ---- */
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(140%);
+}
+
+/* ---- 弱玻璃 ---- */
+.glass-subtle {
+  background: rgba(15, 15, 35, 0.35);
+  backdrop-filter: blur(12px) saturate(100%);
+  -webkit-backdrop-filter: blur(12px) saturate(100%);
+}
+
+/* ---- 悬浮交互：上抬 + 加亮 + 强阴影 ---- */
+.glass-hover {
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    background var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+  will-change: transform;
+}
+.glass-hover:hover {
+  background: var(--glass-bg-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--glass-shadow-strong), var(--glass-shadow-inset);
+  border-color: var(--glass-border-accent);
+}
+.glass-hover:active {
+  transform: translateY(-1px) scale(0.99);
+  transition-duration: var(--duration-fast);
+}
+
+/* ---- 按钮玻璃 ---- */
+.glass-button {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-pill);
+  transition: all var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  user-select: none;
+}
+.glass-button:hover {
+  background: var(--glass-bg-hover);
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border-color: var(--glass-border-accent);
+}
+.glass-button:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 100ms;
+}
+
+/* ---- 强调按钮（紫色实心玻璃） ---- */
+.glass-button-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--text-inverse);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 16px rgba(168, 85, 247, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  transition: all var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  user-select: none;
+}
+.glass-button-primary:hover {
+  background: linear-gradient(135deg, var(--accent-hover), #8b5cf6);
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 24px rgba(168, 85, 247, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.glass-button-primary:active {
+  transform: translateY(0) scale(0.97);
+  background: linear-gradient(135deg, var(--accent-active), #6d28d9);
+}
+
+/* ---- 圆角变体 ---- */
+.glass-radius-sm  { border-radius: var(--radius-sm); }
+.glass-radius-md  { border-radius: var(--radius-md); }
+.glass-radius-lg  { border-radius: var(--radius-lg); }
+.glass-radius-xl  { border-radius: var(--radius-xl); }
+.glass-radius-2xl { border-radius: var(--radius-2xl); }
+
+/* ---- 降级 ---- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-strong,
+  .glass-subtle,
+  .glass-button {
+    background: rgba(18, 18, 40, 0.92);
+  }
+}
+
+/* ---- 频谱条玻璃容器 ---- */
+.glass-visualizer {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 15, 35, 0.3),
+    rgba(15, 15, 35, 0.1)
+  );
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  border-radius: var(--radius-md);
+}
+
+/* ---- 焦点态（无障碍） ---- */
+.glass:focus-visible,
+.glass-button:focus-visible,
+.glass-button-primary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
