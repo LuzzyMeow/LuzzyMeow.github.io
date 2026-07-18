@@ -112,7 +112,7 @@
     {
       "id": "bili-BV129Vf67E8N",
       "title": "来自少年棋士的「孤独」- 虽然我坚强但是我也偶尔无助",
-      "date": "2026-06-02",
+      "date": "2026-06-01",
       "src": "",
       "duration": 239,
       "cover": "https://i1.hdslb.com/bfs/archive/c3bd1fc8afce024139c5392d63800259a13bb89e.jpg",
@@ -123,7 +123,7 @@
       "bilibili": {
         "bvid": "BV129Vf67E8N",
         "url": "https://www.bilibili.com/video/BV129Vf67E8N/",
-        "view": 121
+        "view": 122
       },
       "download": {
         "mp3": "",
@@ -145,7 +145,7 @@
       "bilibili": {
         "bvid": "BV1UQMt6SEKW",
         "url": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
-        "view": 334
+        "view": 336
       },
       "download": {
         "mp3": "",
@@ -214,7 +214,7 @@
       "bilibili": {
         "bvid": "BV1oSN46HEMV",
         "url": "https://www.bilibili.com/video/BV1oSN46HEMV/",
-        "view": 269
+        "view": 271
       },
       "download": {
         "mp3": "",
@@ -237,7 +237,7 @@
       "bilibili": {
         "bvid": "BV1UDNu6oER4",
         "url": "https://www.bilibili.com/video/BV1UDNu6oER4/",
-        "view": 484
+        "view": 488
       },
       "download": {
         "mp3": "",
@@ -260,7 +260,7 @@
       "bilibili": {
         "bvid": "BV1ctNC6rE6B",
         "url": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
-        "view": 159
+        "view": 161
       },
       "download": {
         "mp3": "",
@@ -283,7 +283,7 @@
       "bilibili": {
         "bvid": "BV1GsN96WEzx",
         "url": "https://www.bilibili.com/video/BV1GsN96WEzx/",
-        "view": 544
+        "view": 563
       },
       "download": {
         "mp3": "",
@@ -306,7 +306,7 @@
       "bilibili": {
         "bvid": "BV1weNi6sEHo",
         "url": "https://www.bilibili.com/video/BV1weNi6sEHo/",
-        "view": 150
+        "view": 155
       },
       "download": {
         "mp3": "",
@@ -318,7 +318,7 @@
     {
       "id": "bili-BV1cbKL6cEHR",
       "title": "热烈，冒失，雨声，患失，想你 || 别离开我好不好",
-      "date": "2026-07-17",
+      "date": "2026-07-16",
       "src": "",
       "duration": 306,
       "cover": "https://i0.hdslb.com/bfs/archive/1534df6c28982616a3bb97573665c7627c1a2314.jpg",
@@ -329,7 +329,7 @@
       "bilibili": {
         "bvid": "BV1cbKL6cEHR",
         "url": "https://www.bilibili.com/video/BV1cbKL6cEHR/",
-        "view": 119
+        "view": 135
       },
       "download": {
         "mp3": "",
@@ -337,6 +337,29 @@
         "losslessLabel": "B站"
       },
       "originalArtist": "下雨了"
+    },
+    {
+      "id": "bili-BV1vPKM6PEDQ",
+      "title": "你还天真的以为你挂一个黄灯就会有人进你的世界安慰你？",
+      "date": "2026-07-18",
+      "src": "",
+      "duration": 181,
+      "cover": "https://i0.hdslb.com/bfs/archive/71d6f823253f9a8ce8d09d123896011bd9ae7f68.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1vPKM6PEDQ",
+        "url": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
+        "view": 20
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "第57次取消发送"
     }
   ],
   "albums": [
@@ -345,7 +368,7 @@
       "title": "【沐梓溪】翻唱集",
       "description": "我们都在某一刻成为候鸟——不是因为天性向往漂泊，而是因为有一个人，住在必须穿越几千公里云海才能抵达的远方。\n\n迁徙的终点，从来不是一个地名。\n而是那个人。",
       "cover": "https://archive.biliimg.com/bfs/archive/dd37e2fdabc63789f884561cbfa379797611c4cf.jpg",
-      "createdAt": "2026-07-17",
+      "createdAt": "2026-07-18",
       "trackIds": [
         "bili-BV129Vf67E8N",
         "bili-BV1UQMt6SEKW",
@@ -356,7 +379,8 @@
         "bili-BV1ctNC6rE6B",
         "bili-BV1GsN96WEzx",
         "bili-BV1weNi6sEHo",
-        "bili-BV1cbKL6cEHR"
+        "bili-BV1cbKL6cEHR",
+        "bili-BV1vPKM6PEDQ"
       ]
     }
   ],
