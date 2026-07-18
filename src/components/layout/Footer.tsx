@@ -1,79 +1,56 @@
-import { memo } from 'react'
-import { Github, Heart } from 'lucide-react'
+import { Icon } from '../core/Icon';
+
+/* ============================================================
+   页脚 · 等宽小字 + 源码链接
+   ============================================================ */
 
 interface FooterProps {
-  ownerName: string
-  repoUrl?: string
+  siteName: string;
+  icp?: string;
+  sourceRepo: string;
 }
 
-/**
- * 底部页脚 — 暮光紫夜
- */
-export const Footer = memo(function Footer({
-  ownerName,
-  repoUrl = 'https://github.com/LuzzyMeow/LuzzyMeow.github.io',
-}: FooterProps) {
-  const year = new Date().getFullYear()
+export function Footer({ siteName, icp, sourceRepo }: FooterProps) {
   return (
     <footer
       style={{
-        marginTop: 'var(--space-20)',
-        marginBottom: 'calc(var(--player-height) + var(--space-8))',
-        padding: 'var(--space-8) var(--content-padding)',
+        position: 'relative',
+        zIndex: 2,
+        borderTop: '1px solid var(--line)',
+        padding: `var(--space-10) var(--content-padding) calc(var(--player-height) + var(--space-10))`,
         textAlign: 'center',
       }}
     >
       <div
-        className="glass"
+        className="mono"
         style={{
-          padding: 'var(--space-8)',
-          maxWidth: 'var(--content-max-width)',
-          margin: '0 auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 'var(--space-3)',
+          fontSize: 'var(--text-xs)',
+          color: 'var(--text-tertiary)',
+          letterSpacing: '0.1em',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--space-2)',
-            marginBottom: 'var(--space-3)',
-            color: 'var(--text-secondary)',
-            fontSize: 'var(--text-sm)',
-          }}
-        >
-          <span>© {year} {ownerName}</span>
-          <span style={{ opacity: 0.3 }}>·</span>
-          <span>Powered by GitHub Pages</span>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--space-4)',
-            fontSize: 'var(--text-xs)',
-            color: 'var(--text-tertiary)',
-          }}
-        >
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-            Built with <Heart size={11} fill="currentColor" style={{ color: 'var(--sys-pink)' }} /> Liquid Glass
-          </span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+          <Icon name="star" size={12} style={{ color: 'var(--pink)' }} />
+          © 2026 {siteName} // NEON DEEP-SPACE
+          <Icon name="star" size={12} style={{ color: 'var(--pink)' }} />
+        </span>
+        <span>
+          DESIGNED & BUILT BY {siteName.toUpperCase()} ·{' '}
           <a
-            href={repoUrl}
+            href={sourceRepo}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 4,
-              color: 'var(--text-tertiary)',
-            }}
+            style={{ color: 'var(--cyan)', borderBottom: '1px solid var(--line-strong)' }}
           >
-            <Github size={12} /> Source
+            SOURCE
           </a>
-        </div>
+        </span>
+        {icp && <span>{icp}</span>}
       </div>
     </footer>
-  )
-})
+  );
+}

@@ -1,97 +1,66 @@
-import { memo } from 'react'
-import { Section } from '../layout/Section'
-import { GlassCard } from '../glass/GlassCard'
-import type { SkillGroup } from '../../types/manifest'
+import type { SkillGroup } from '../../types/manifest';
+import { Icon } from '../core/Icon';
+import { NeonPanel } from '../core/NeonPanel';
+import { NeonTag } from '../core/NeonTag';
 
-interface SkillsProps { skills: SkillGroup[] }
+/* ============================================================
+   技能 · 能量条（技能=青 / 兴趣=品红）
+   ============================================================ */
 
-/**
- * 技能与兴趣 — 暮光紫夜
- * 标签云风格 + 紫蓝渐变进度条
- */
-export const Skills = memo(function Skills({ skills }: SkillsProps) {
-  if (!skills || skills.length === 0) {
-    return (
-      <Section id="skills" title="技能与兴趣" subtitle="我会的和我爱的">
-        <GlassCard padding="xl">
-          <p style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: 'var(--space-8) 0', margin: 0 }}>
-            暂无技能数据
-          </p>
-        </GlassCard>
-      </Section>
-    )
-  }
-
+export function Skills({ skills }: { skills?: SkillGroup[] }) {
+  if (!skills || skills.length === 0) return null;
   return (
-    <Section id="skills" title="技能与兴趣" subtitle="我会的和我爱的">
-      <div style={{
+    <div
+      style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 'var(--space-5)',
-      }}>
-        {skills.map((group, gi) => (
-          <GlassCard key={gi} padding="lg">
-            <h3 style={{
-              fontSize: 'var(--text-md)', fontWeight: 600, color: 'var(--text-primary)',
-              marginBottom: 'var(--space-4)', paddingBottom: 'var(--space-3)',
-              borderBottom: '1px solid var(--glass-border)',
-              letterSpacing: '-0.01em',
-              display: 'flex', alignItems: 'center', gap: 'var(--space-2)',
-            }}>
-              <span style={{
-                width: 8, height: 8, borderRadius: '50%',
-                background: 'linear-gradient(135deg, var(--accent), var(--sys-pink))',
-                flexShrink: 0,
-              }} />
-              {group.category}
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-              {group.items.map((item, ii) => {
-                const hasLevel = typeof item.level === 'number'
-                const level = hasLevel ? Math.max(0, Math.min(100, item.level as number)) : 0
-                return (
-                  <div key={ii}>
-                    <div style={{
-                      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                      marginBottom: hasLevel ? 'var(--space-2)' : 0,
-                    }}>
-                      <span style={{
-                        fontSize: 'var(--text-sm)', fontWeight: 500,
-                        color: item.isHobby ? 'var(--sys-pink)' : 'var(--text-primary)',
-                        display: 'inline-flex', alignItems: 'center', gap: 4,
-                      }}>
-                        {item.isHobby && <span aria-hidden="true" style={{ fontSize: '0.85em' }}>⭐</span>}
-                        {item.name}
-                      </span>
-                      {hasLevel && (
-                        <span className="tabular" style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>
-                          {level}
-                        </span>
-                      )}
-                    </div>
-                    {hasLevel && (
-                      <div style={{
-                        height: 6, borderRadius: 'var(--radius-pill)',
-                        background: 'rgba(0,0,0,0.04)', overflow: 'hidden',
-                        border: '1px solid rgba(0,0,0,0.06)',
-                      }}>
-                        <div style={{
-                          width: `${level}%`, height: '100%', borderRadius: 'var(--radius-pill)',
-                          background: item.isHobby
-                            ? 'linear-gradient(90deg, var(--sys-pink), var(--accent))'
-                            : 'linear-gradient(90deg, var(--accent), var(--sys-teal))',
-                          boxShadow: '0 0 8px rgba(0,0,0,0.10)',
-                          transition: 'width var(--duration-slow) var(--ease-out)',
-                        }} />
-                      </div>
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: 'var(--space-6)',
+      }}
+    >
+      {skills.map((group, gi) => (
+        <NeonPanel key={group.category} className="reveal" scan={gi % 2 === 0}>
+          <p className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--pink)', letterSpacing: '0.2em', marginBottom: 'var(--space-5)' }}>
+            {String(gi + 1).padStart(2, '0')} // {group.category}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+            {group.items.map((item) => {
+              const color = item.isHobby ? 'var(--pink)' : 'var(--cyan)';
+              return (
+                <div key={item.name}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'var(--text-sm)', color: 'var(--text-primary)' }}>
+                      {item.isHobby && <Icon name="star" size={12} style={{ color: 'var(--pink)' }} />}
+                      {item.name}
+                    </span>
+                    {typeof item.level === 'number' && (
+                      <span className="mono" style={{ fontSize: 'var(--text-xs)', color }}>{item.level}%</span>
                     )}
                   </div>
-                )
-              })}
-            </div>
-          </GlassCard>
-        ))}
-      </div>
-    </Section>
-  )
-})
+                  {typeof item.level === 'number' ? (
+                    <div style={{ height: 4, background: 'rgba(0,229,255,0.08)', borderRadius: 2, overflow: 'hidden' }}>
+                      <div
+                        style={{
+                          width: `${item.level}%`,
+                          height: '100%',
+                          background: item.isHobby
+                            ? 'linear-gradient(90deg, var(--violet), var(--pink))'
+                            : 'linear-gradient(90deg, var(--cyan), var(--violet))',
+                          boxShadow: item.isHobby ? '0 0 8px rgba(255,45,150,0.5)' : '0 0 8px rgba(0,229,255,0.5)',
+                          borderRadius: 2,
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', gap: 6 }}>
+                      <NeonTag pink={item.isHobby}>{item.isHobby ? 'HOBBY' : 'TAG'}</NeonTag>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </NeonPanel>
+      ))}
+    </div>
+  );
+}

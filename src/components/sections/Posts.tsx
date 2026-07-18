@@ -1,86 +1,69 @@
-import { memo, type ReactNode } from 'react'
-import { Clock } from 'lucide-react'
-import { Section } from '../layout/Section'
-import { GlassCard } from '../glass/GlassCard'
-import { formatDateShort } from '../../lib/format'
-import type { Post } from '../../types/manifest'
+import type { Post } from '../../types/manifest';
+import { formatDateShort, formatRelative } from '../../lib/format';
+import { Icon } from '../core/Icon';
+import { NeonTag } from '../core/NeonTag';
 
-interface PostsProps { posts: Post[] }
+/* ============================================================
+   随笔 · 数据行列表
+   ============================================================ */
 
-/**
- * 随笔列表 — 暮光紫夜
- * 垂直排列，时间轴风格左边装饰线
- */
-export const Posts = memo(function Posts({ posts }: PostsProps) {
-  if (!posts || posts.length === 0) {
-    return (
-      <Section id="posts" title="随笔" subtitle="写下的字句">
-        <GlassCard padding="xl">
-          <p style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: 'var(--space-8) 0', margin: 0 }}>
-            暂无随笔
-          </p>
-        </GlassCard>
-      </Section>
-    )
-  }
-
+export function Posts({ posts }: { posts?: Post[] }) {
+  if (!posts || posts.length === 0) return null;
   return (
-    <Section id="posts" title="随笔" subtitle="写下的字句">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-        {posts.map((post) => {
-          const content: ReactNode = (
-            <div style={{ display: 'flex', gap: 'var(--space-4)', alignItems: 'flex-start' }}>
-              <time style={{
-                flexShrink: 0, width: 90,
-                fontSize: 'var(--text-xs)', fontFamily: 'var(--font-mono)',
-                color: 'var(--text-tertiary)', paddingTop: 2,
-              }}>
+    <div className="reveal neon-frame">
+      <div className="neon-frame-body" style={{ padding: 0 }}>
+        {posts.map((post, i) => {
+          const inner = (
+            <>
+              <span className="mono posts-date" style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', width: 92, flexShrink: 0 }}>
                 {formatDateShort(post.date)}
-              </time>
+              </span>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <h3 style={{
-                  fontSize: 'var(--text-md)', fontWeight: 600,
-                  color: 'var(--text-primary)', marginBottom: 'var(--space-1)',
-                  margin: '0 0 var(--space-1) 0', letterSpacing: '-0.01em',
-                }}>
-                  {post.title}
-                </h3>
+                <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)', fontWeight: 500 }}>{post.title}</p>
                 {post.excerpt && (
-                  <p className="line-clamp-2" style={{
-                    fontSize: 'var(--text-sm)', color: 'var(--text-secondary)',
-                    lineHeight: 1.6, margin: '0 0 var(--space-2) 0',
-                  }}>
-                    {post.excerpt}
-                  </p>
+                  <p className="line-clamp-2" style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginTop: 4 }}>{post.excerpt}</p>
                 )}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)', alignItems: 'center' }}>
-                  {post.tags?.map((t, ti) => (
-                    <span key={ti} style={{
-                      fontSize: 'var(--text-xs)', padding: '2px 8px', borderRadius: 'var(--radius-pill)',
-                      background: 'rgba(0,0,0,0.05)', color: 'var(--accent)', fontWeight: 500,
-                    }}>{t}</span>
-                  ))}
-                  {typeof post.readingTime === 'number' && (
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>
-                      <Clock size={11} /> {post.readingTime} 分钟阅读
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, flexWrap: 'wrap' }}>
+                  {post.tags?.map((t) => <NeonTag key={t}>{t}</NeonTag>)}
+                  {post.readingTime && (
+                    <span className="mono" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>
+                      <Icon name="clock" size={11} /> {post.readingTime}min
                     </span>
                   )}
+                  <span className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>{formatRelative(post.date)}</span>
                 </div>
               </div>
+              {post.externalUrl && <Icon name="external" size={16} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />}
+            </>
+          );
+          const rowStyle: React.CSSProperties = {
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: 'var(--space-4)',
+            padding: 'var(--space-5)',
+            borderBottom: i < posts.length - 1 ? '1px solid rgba(0,229,255,0.06)' : 'none',
+            transition: 'background var(--duration-fast) var(--ease-neon)',
+          };
+          return post.externalUrl ? (
+            <a
+              key={post.id}
+              href={post.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={rowStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0,229,255,0.04)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+            >
+              {inner}
+            </a>
+          ) : (
+            <div key={post.id} style={rowStyle}>
+              {inner}
             </div>
-          )
-
-          if (post.externalUrl) {
-            return (
-              <a key={post.id} href={post.externalUrl} target="_blank" rel="noopener noreferrer"
-                style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
-                <GlassCard hover padding="lg">{content}</GlassCard>
-              </a>
-            )
-          }
-          return <GlassCard key={post.id} hover padding="lg">{content}</GlassCard>
+          );
         })}
       </div>
-    </Section>
-  )
-})
+      <style>{`@media (max-width: 640px) { .posts-date { display: none !important; } }`}</style>
+    </div>
+  );
+}

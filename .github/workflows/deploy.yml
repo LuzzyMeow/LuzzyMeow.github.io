@@ -33,6 +33,12 @@ jobs:
       - name: Generate / sync site.json tracks
         run: node scripts/gen-manifest.mjs
 
+      - name: Sync Bilibili season to site.json
+        run: node scripts/sync-bilibili.mjs
+        env:
+          BILI_SEASON_ID: '8529939'
+          BILI_SEASON_MID: '3690972504394108'
+
       - name: Build
         run: npm run build
 

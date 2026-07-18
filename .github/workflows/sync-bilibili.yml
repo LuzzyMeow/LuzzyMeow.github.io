@@ -1,0 +1,44 @@
+name: Sync Bilibili Season
+
+on:
+  schedule:
+    # 每 6 小时同步一次（UTC: 00:00 / 06:00 / 12:00 / 18:00）
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # 使用 PAT 以便提交触发 deploy 工作流
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Sync Bilibili season to site.json
+        run: node scripts/sync-bilibili.mjs
+        env:
+          BILI_SEASON_ID: '8529939'
+          BILI_SEASON_MID: '3690972504394108'
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/site.json
+          if git diff --cached --quiet; then
+            echo "无变更，跳过提交"
+          else
+            git commit -m "chore(sync): 更新 B 站翻唱合集元数据 [skip ci]"
+            git push
+          fi

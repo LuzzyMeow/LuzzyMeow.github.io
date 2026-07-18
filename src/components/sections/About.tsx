@@ -1,151 +1,111 @@
-import { memo } from 'react'
-import { Github, Youtube, Twitter, Mail, Link2, MapPin } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
-import { Section } from '../layout/Section'
-import { GlassCard } from '../glass/GlassCard'
-import type { Owner } from '../../types/manifest'
+import type { SiteData } from '../../types/manifest';
+import { Icon, type IconName } from '../core/Icon';
+import { NeonPanel } from '../core/NeonPanel';
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Github, Youtube, Twitter, Mail, Link: Link2, Link2,
-}
+/* ============================================================
+   关于 · 身份卡 + 长介绍
+   ============================================================ */
 
-function iconMap(name?: string): LucideIcon {
-  if (!name) return Link2
-  return ICON_MAP[name] ?? Link2
-}
+const LINK_ICON: Record<string, IconName> = {
+  github: 'github',
+  bilibili: 'video',
+  email: 'mail',
+  mail: 'mail',
+};
 
-interface AboutProps { owner: Owner }
-
-/**
- * 关于我 — 暮光紫夜
- * 左侧大头像带渐变光晕 + 右侧多段介绍
- */
-export const About = memo(function About({ owner }: AboutProps) {
+export function About({ site }: { site: SiteData }) {
+  const { owner } = site;
   return (
-    <Section id="about" title="关于我" subtitle="一些关于我的介绍">
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: 'var(--space-6)',
-          alignItems: 'start',
-        }}
-      >
-        {/* 左栏：头像 + 基本信息 */}
-        <GlassCard padding="xl" style={{ textAlign: 'center' }}>
-          {/* 发光环头像 */}
-          <div style={{ position: 'relative', display: 'inline-block', marginBottom: 'var(--space-5)' }}>
+    <div
+      className="reveal"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'minmax(0, 320px) minmax(0, 1fr)',
+        gap: 'var(--space-6)',
+      }}
+    >
+      {/* 身份卡 */}
+      <NeonPanel scan>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+          {/* 头像环 */}
+          <div
+            style={{
+              position: 'relative',
+              width: 132,
+              height: 132,
+              marginBottom: 'var(--space-5)',
+            }}
+          >
             <div
+              aria-hidden="true"
               style={{
                 position: 'absolute',
-                inset: -4,
+                inset: 0,
                 borderRadius: '50%',
-                background: 'conic-gradient(from 0deg, var(--accent), var(--sys-pink), var(--sys-teal), var(--accent))',
-                opacity: 0.5,
-                filter: 'blur(4px)',
-                animation: 'heroSpin 8s linear infinite',
+                background: 'conic-gradient(from 0deg, var(--cyan), var(--violet), var(--pink), var(--cyan))',
+                animation: 'aboutRingSpin 8s linear infinite',
+                opacity: 0.85,
               }}
             />
             <div
               style={{
-                position: 'relative',
-                width: 120,
-                height: 120,
+                position: 'absolute',
+                inset: 3,
                 borderRadius: '50%',
-                background: owner.avatar
-                  ? `url(${owner.avatar}) center/cover`
-                  : 'linear-gradient(135deg, var(--accent), var(--sys-pink), var(--sys-teal))',
-                border: '3px solid rgba(255,255,255,0.15)',
-                boxShadow: '0 0 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.08)',
+                background: 'var(--bg-panel-solid)',
+                overflow: 'hidden',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'rgba(255,255,255,0.9)',
-                fontSize: 44,
-                fontWeight: 700,
-                letterSpacing: '-0.04em',
+                color: 'var(--cyan)',
               }}
             >
-              {!owner.avatar && owner.name.charAt(0).toUpperCase()}
+              {owner.avatar ? (
+                <img src={owner.avatar} alt={owner.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                <Icon name="music" size={44} />
+              )}
             </div>
           </div>
 
-          <h3 style={{
-            fontSize: 'var(--text-xl)',
-            fontWeight: 800,
-            color: 'var(--text-primary)',
-            marginBottom: 'var(--space-2)',
-            letterSpacing: '-0.01em',
-          }}>
-            {owner.name}
-          </h3>
-
-          {owner.bio && (
-            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', marginBottom: 'var(--space-3)' }}>
-              {owner.bio}
-            </p>
-          )}
+          <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--text-primary)' }}>{owner.name}</h3>
+          <p className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--pink)', letterSpacing: '0.2em', marginTop: 6, textShadow: 'var(--glow-text-pink)' }}>
+            STATUS: ONLINE
+          </p>
 
           {owner.location && (
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 4,
-              fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', marginBottom: 'var(--space-4)',
-            }}>
-              <MapPin size={12} /> {owner.location}
-            </div>
+            <p style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 'var(--space-4)', fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>
+              <Icon name="mapPin" size={14} style={{ color: 'var(--cyan)' }} />
+              {owner.location}
+            </p>
           )}
 
           {owner.links && owner.links.length > 0 && (
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
-              {owner.links.map((link, i) => {
-                const Icon = iconMap(link.icon)
-                return (
-                  <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" title={link.label}
-                    style={{
-                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                      width: 36, height: 36, borderRadius: '50%',
-                      background: 'rgba(0,0,0,0.04)', border: '1px solid var(--glass-border)',
-                      color: 'var(--text-secondary)',
-                      transition: 'all var(--duration-fast) var(--ease-out)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--glass-border-accent)'
-                      e.currentTarget.style.color = 'var(--accent)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--glass-border)'
-                      e.currentTarget.style.color = 'var(--text-secondary)'
-                    }}
-                  >
-                    <Icon size={16} />
-                  </a>
-                )
-              })}
-            </div>
-          )}
-        </GlassCard>
-
-        {/* 右栏：长介绍 */}
-        <GlassCard padding="xl">
-          {owner.about && owner.about.length > 0 ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-              {owner.about.map((p, i) => (
-                <p key={i} style={{
-                  fontSize: 'var(--text-base)', lineHeight: 1.75,
-                  color: 'var(--text-primary)', margin: 0,
-                }}>
-                  {p}
-                </p>
+            <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: 'var(--space-5)' }}>
+              {owner.links.map((l) => (
+                <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer" className="neon-icon-btn" aria-label={l.label} title={l.label}>
+                  <Icon name={LINK_ICON[(l.icon ?? l.label).toLowerCase()] ?? 'link'} size={18} />
+                </a>
               ))}
             </div>
-          ) : (
-            <p style={{ color: 'var(--text-tertiary)', textAlign: 'center', padding: 'var(--space-8) 0', margin: 0 }}>
-              暂无介绍
-            </p>
           )}
-        </GlassCard>
-      </div>
-      <style>{`@keyframes heroSpin { to { transform: rotate(360deg); } }`}</style>
-    </Section>
-  )
-})
+        </div>
+      </NeonPanel>
+
+      {/* 介绍文本 */}
+      <NeonPanel>
+        <p className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--pink)', letterSpacing: '0.2em', marginBottom: 'var(--space-5)' }}>
+          {'// PROFILE.TXT'}
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          {(owner.about?.length ? owner.about : [owner.bio]).map((para, i) => (
+            <p key={i} style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-base)', lineHeight: 1.9 }}>
+              {para}
+            </p>
+          ))}
+        </div>
+      </NeonPanel>
+      <style>{`@keyframes aboutRingSpin { to { transform: rotate(360deg); } } @media (max-width: 860px) { #about .reveal { grid-template-columns: 1fr !important; } }`}</style>
+    </div>
+  );
+}

@@ -1,159 +1,79 @@
-@import './styles/fonts.css';
+/* ============================================================
+   霓虹深空 · 基础样式
+   ============================================================ */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ========================================================================
-   全局基础样式
-   ======================================================================== */
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
-  /* iOS Safari 100vh 问题修正 */
-  --vh: 1vh;
+  background: var(--bg-void);
   scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(139, 92, 255, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(0, 229, 255, 0.05), transparent 60%),
+    var(--bg-void);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  line-height: 1.5;
-  color: var(--text-primary);
-  background: var(--bg-base);
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* macOS/iOS 橡皮筋过度滚动 */
-  overscroll-behavior-y: none;
-  /* 防止移动端点击高亮 */
-  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
 }
 
-/* 标题字距：Apple 标志性紧凑感 */
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.02em;
-  font-weight: 700;
+  font-family: var(--font-display);
+  line-height: 1.3;
   margin: 0;
 }
 
-/* 段落 */
 p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+img { display: block; max-width: 100%; }
 
-/* 链接 */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
+::selection { background: rgba(0, 229, 255, 0.35); color: #fff; }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: rgba(0, 229, 255, 0.25); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 229, 255, 0.5); box-shadow: var(--glow-cyan); }
+
+:focus-visible {
+  outline: 1px solid var(--cyan);
+  outline-offset: 2px;
 }
-a:hover { color: var(--accent-hover); }
 
-/* 按钮 */
-button {
-  font-family: inherit;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: inherit;
-}
-
-/* 数字等宽 */
-.tabular {
+/* 工具类 */
+.mono {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  font-feature-settings: 'tnum';
 }
-
-/* 滚动条 - 浅色风格细滚动条 */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.20);
-}
-
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
-}
-
-/* 选中文字 */
-::selection {
-  background: rgba(0, 0, 0, 0.10);
-  color: var(--text-primary);
-}
-
-/* 工具类：隐藏滚动条但保留滚动 */
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* 工具类：单行省略 */
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* 工具类：多行省略 */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* 动画工具 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp var(--duration-slow) var(--ease-out) both;
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-scale-in {
-  animation: scaleIn var(--duration-normal) var(--ease-out) both;
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
 }

@@ -1,65 +1,47 @@
-/* ========================================================================
-   LuzzyMeow · Design Tokens  v3
-   极简白灰 · 现代干净风格
-   ======================================================================== */
+/* ============================================================
+   霓虹深空 · 设计令牌
+   ============================================================ */
 
 :root {
-  /* ---- 背景层 ---- */
-  --bg-base: #ffffff;
-  --bg-gradient-1: #e8e8ec;            /* 极淡灰 */
-  --bg-gradient-2: #dcdce2;
-  --bg-gradient-3: #e2e2e8;
-  --bg-gradient-4: #eeeef2;
+  /* 背景 */
+  --bg-void: #05060F;
+  --bg-deep: #070912;
+  --bg-panel: rgba(11, 14, 26, 0.72);
+  --bg-panel-solid: #0B0E1A;
+  --bg-elevated: rgba(16, 20, 38, 0.9);
 
-  /* ---- 玻璃层 (白底不同透明度) ---- */
-  --glass-bg: rgba(255, 255, 255, 0.60);
-  --glass-bg-hover: rgba(255, 255, 255, 0.85);
-  --glass-bg-strong: rgba(255, 255, 255, 0.80);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-border-inner: rgba(0, 0, 0, 0.04);
-  --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --glass-shadow-strong: 0 8px 40px rgba(0, 0, 0, 0.10);
-  --glass-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --glass-blur: 20px;
-  --glass-blur-strong: 40px;
-  --glass-saturation: 100%;
+  /* 霓虹色 */
+  --cyan: #00E5FF;
+  --cyan-dim: #00B8D4;
+  --pink: #FF2D96;
+  --violet: #8B5CFF;
 
-  /* ---- 文字 ---- */
-  --text-primary: #111111;
-  --text-secondary: #555555;
-  --text-tertiary: #999999;
-  --text-on-glass: rgba(17, 17, 17, 0.95);
-  --text-inverse: #ffffff;
+  /* 文字 */
+  --text-primary: #E8F0FF;
+  --text-secondary: #8A94B8;
+  --text-tertiary: #4A5378;
 
-  /* ---- 强调色 (纯黑) ---- */
-  --accent: #111111;
-  --accent-hover: #333333;
-  --accent-active: #000000;
-  --accent-dark: #000000;
-  --accent-soft: rgba(0, 0, 0, 0.06);
-  --accent-glow: 0 0 20px rgba(0, 0, 0, 0.08);
-  --accent-glow-strong: 0 0 40px rgba(0, 0, 0, 0.12);
-  --accent-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
-  --accent-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+  /* 描边 */
+  --line: rgba(0, 229, 255, 0.14);
+  --line-strong: rgba(0, 229, 255, 0.38);
+  --line-pink: rgba(255, 45, 150, 0.28);
 
-  /* ---- 系统色 ---- */
-  --sys-red: #e04444;
-  --sys-green: #2ea043;
-  --sys-orange: #d97706;
-  --sys-yellow: #ca8a04;
-  --sys-pink: #d9467c;
-  --sys-purple: #7c3aed;
-  --sys-teal: #0891b2;
+  /* 发光 */
+  --glow-cyan: 0 0 12px rgba(0, 229, 255, 0.45), 0 0 36px rgba(0, 229, 255, 0.14);
+  --glow-pink: 0 0 12px rgba(255, 45, 150, 0.45), 0 0 36px rgba(255, 45, 150, 0.14);
+  --glow-text-cyan: 0 0 8px rgba(0, 229, 255, 0.75), 0 0 28px rgba(0, 229, 255, 0.3);
+  --glow-text-pink: 0 0 8px rgba(255, 45, 150, 0.75), 0 0 28px rgba(255, 45, 150, 0.3);
 
-  /* ---- 圆角 ---- */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
-  --radius-pill: 9999px;
+  /* 渐变 */
+  --grad-neon: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+  --grad-neon-135: linear-gradient(135deg, var(--cyan), var(--violet) 55%, var(--pink));
 
-  /* ---- 间距 ---- */
+  /* 圆角（赛博 = 小圆角 + 切角） */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* 间距 */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -72,45 +54,39 @@
   --space-16: 64px;
   --space-20: 80px;
 
-  /* ---- 字体栈 ---- */
-  --font-sans: "Alibaba PuHuiTi", "Alibaba Sans",
-               -apple-system, BlinkMacSystemFont, "SF Pro Display",
-               "Helvetica Neue", "PingFang SC", "Microsoft YaHei",
-               sans-serif;
-  --font-mono: "Alibaba Sans", "SF Mono", "JetBrains Mono",
-               "Fira Code", Menlo, Consolas, monospace;
+  /* 字体 */
+  --font-display: 'Orbitron', 'Noto Sans SC', system-ui, sans-serif;
+  --font-sans: 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Noto Sans SC', ui-monospace, monospace;
 
-  /* ---- 字号阶梯 ---- */
+  /* 字号 */
   --text-xs: 11px;
   --text-sm: 13px;
   --text-base: 15px;
   --text-md: 17px;
   --text-lg: 20px;
-  --text-xl: 24px;
-  --text-2xl: 32px;
-  --text-3xl: 44px;
-  --text-4xl: 56px;
-  --text-5xl: 72px;
+  --text-xl: 26px;
+  --text-2xl: 34px;
+  --text-3xl: clamp(36px, 6vw, 52px);
+  --text-4xl: clamp(48px, 9vw, 72px);
+  --text-5xl: clamp(64px, 12vw, 96px);
 
-  /* ---- 动画曲线 ---- */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-fast: 200ms;
-  --duration-normal: 350ms;
-  --duration-slow: 600ms;
-  --duration-slower: 1000ms;
+  /* 动效 */
+  --ease-neon: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.85, 0, 0.15, 1);
+  --duration-fast: 160ms;
+  --duration-normal: 320ms;
+  --duration-slow: 640ms;
+  --duration-slower: 1200ms;
 
-  /* ---- 布局 ---- */
-  --header-height: 64px;
-  --player-height: 96px;
-  --player-height-compact: 72px;
-  --content-max-width: 1200px;
+  /* 布局 */
+  --nav-height: 60px;
+  --player-height: 88px;
+  --content-max-width: 1120px;
   --content-padding: clamp(16px, 4vw, 40px);
 
-  /* ---- 频谱可视化 ---- */
-  --visualizer-bar-count: 64;
-  --visualizer-color-1: #111111;
-  --visualizer-color-2: #555555;
-  --visualizer-color-3: #999999;
+  /* 频谱 */
+  --visualizer-from: #00E5FF;
+  --visualizer-via: #8B5CFF;
+  --visualizer-to: #FF2D96;
 }

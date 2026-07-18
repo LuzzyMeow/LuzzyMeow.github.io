@@ -11,8 +11,16 @@
     ],
     "location": "中国",
     "links": [
-      { "label": "GitHub", "url": "https://github.com/LuzzyMeow", "icon": "Github" },
-      { "label": "B站", "url": "https://space.bilibili.com/", "icon": "Youtube" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/LuzzyMeow",
+        "icon": "Github"
+      },
+      {
+        "label": "B站",
+        "url": "https://space.bilibili.com/",
+        "icon": "Youtube"
+      }
     ],
     "contact": {
       "email": "i@luzzymeow.github.io",
@@ -27,25 +35,55 @@
     {
       "category": "音乐",
       "items": [
-        { "name": "翻唱", "level": 75, "isHobby": true },
-        { "name": "原创", "level": 50, "isHobby": true },
-        { "name": "混音", "level": 40, "isHobby": true }
+        {
+          "name": "翻唱",
+          "level": 75,
+          "isHobby": true
+        },
+        {
+          "name": "原创",
+          "level": 50,
+          "isHobby": true
+        },
+        {
+          "name": "混音",
+          "level": 40,
+          "isHobby": true
+        }
       ]
     },
     {
       "category": "编程",
       "items": [
-        { "name": "Go", "level": 85 },
-        { "name": "TypeScript", "level": 75 },
-        { "name": "Python", "level": 70 }
+        {
+          "name": "Go",
+          "level": 85
+        },
+        {
+          "name": "TypeScript",
+          "level": 75
+        },
+        {
+          "name": "Python",
+          "level": 70
+        }
       ]
     },
     {
       "category": "兴趣",
       "items": [
-        { "name": "Anime", "isHobby": true },
-        { "name": "Game", "isHobby": true },
-        { "name": "Photography", "isHobby": true }
+        {
+          "name": "Anime",
+          "isHobby": true
+        },
+        {
+          "name": "Game",
+          "isHobby": true
+        },
+        {
+          "name": "Photography",
+          "isHobby": true
+        }
       ]
     }
   ],
@@ -57,7 +95,11 @@
       "date": "2026-07-15",
       "src": "/audio/demo-welcome.mp3",
       "lyrics": "/lyrics/demo-welcome.lrc",
-      "tags": ["原创", "Demo", "Instrumental"],
+      "tags": [
+        "原创",
+        "Demo",
+        "Instrumental"
+      ],
       "language": "other",
       "genre": "original",
       "note": "占位示例曲目，替换 public/audio/ 下文件并编辑 site.json 即可",
@@ -66,19 +108,280 @@
         "lossless": "",
         "losslessLabel": ""
       }
+    },
+    {
+      "id": "bili-BV129Vf67E8N",
+      "title": "来自少年棋士的「孤独」- 虽然我坚强但是我也偶尔无助",
+      "date": "2026-06-02",
+      "src": "",
+      "duration": 239,
+      "cover": "https://i1.hdslb.com/bfs/archive/c3bd1fc8afce024139c5392d63800259a13bb89e.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV129Vf67E8N",
+        "url": "https://www.bilibili.com/video/BV129Vf67E8N/",
+        "view": 121
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV129Vf67E8N/",
+        "losslessLabel": "B站"
+      }
+    },
+    {
+      "id": "bili-BV1UQMt6SEKW",
+      "title": "这应该是最适合独自一人玩VRchat的玩家的歌了",
+      "date": "2026-07-07",
+      "src": "",
+      "duration": 212,
+      "cover": "https://i2.hdslb.com/bfs/archive/834bb0d2ce22b5d279360e93ad8fee90cb719b7d.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1UQMt6SEKW",
+        "url": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
+        "view": 334
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "孤身"
+    },
+    {
+      "id": "bili-BV1QHML6XEkX",
+      "title": "小甜歌，当然是唱给兄弟听了，兄弟你好香",
+      "date": "2026-07-09",
+      "src": "",
+      "duration": 209,
+      "cover": "https://i0.hdslb.com/bfs/archive/7562b97db2fce58653761d3f60fec8ed11b789a4.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1QHML6XEkX",
+        "url": "https://www.bilibili.com/video/BV1QHML6XEkX/",
+        "view": 185
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1QHML6XEkX/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "失眠飞行"
+    },
+    {
+      "id": "bili-BV113Nj6qE2x",
+      "title": "对某些人来说，不喜欢 我就走，哪有那么多理由啊",
+      "date": "2026-07-10",
+      "src": "",
+      "duration": 170,
+      "cover": "https://i0.hdslb.com/bfs/archive/16b9d45e1e53ef88bcf77866763c26911f2f9865.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV113Nj6qE2x",
+        "url": "https://www.bilibili.com/video/BV113Nj6qE2x/",
+        "view": 236
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV113Nj6qE2x/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "别错过"
+    },
+    {
+      "id": "bili-BV1oSN46HEMV",
+      "title": "如果离别是我们注定的结局，你还会选择与我相识吗？ | 琥珀色麦芽糖",
+      "date": "2026-07-11",
+      "src": "",
+      "duration": 165,
+      "cover": "https://i1.hdslb.com/bfs/archive/33a3ef9b4217c8c7c93f087c480c33c9bf98f9d5.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1oSN46HEMV",
+        "url": "https://www.bilibili.com/video/BV1oSN46HEMV/",
+        "view": 269
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1oSN46HEMV/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "SunoAI"
+    },
+    {
+      "id": "bili-BV1UDNu6oER4",
+      "title": "你温柔得像软软的棉花糖一样",
+      "date": "2026-07-12",
+      "src": "",
+      "duration": 235,
+      "cover": "https://i0.hdslb.com/bfs/archive/12aae6165ebc307c5b8b60574a882d68fd82ba77.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1UDNu6oER4",
+        "url": "https://www.bilibili.com/video/BV1UDNu6oER4/",
+        "view": 484
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1UDNu6oER4/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "写不完的温柔（Where Did U Go）"
+    },
+    {
+      "id": "bili-BV1ctNC6rE6B",
+      "title": "三分钟，恰好装下了暗恋、嘴硬、和那句没讲出来的「喜欢你」",
+      "date": "2026-07-13",
+      "src": "",
+      "duration": 201,
+      "cover": "https://i1.hdslb.com/bfs/archive/00fda7bc562dba63c505dceb1d68739f8aa808aa.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1ctNC6rE6B",
+        "url": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
+        "view": 159
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "藏"
+    },
+    {
+      "id": "bili-BV1GsN96WEzx",
+      "title": "“有没有人爱你？世界已然将你抛弃...”反正，也不会有人喜欢我的",
+      "date": "2026-07-14",
+      "src": "",
+      "duration": 256,
+      "cover": "https://i2.hdslb.com/bfs/archive/db3af461d61ccb03b520759a8144ccec509f6ebd.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1GsN96WEzx",
+        "url": "https://www.bilibili.com/video/BV1GsN96WEzx/",
+        "view": 544
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1GsN96WEzx/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "海底"
+    },
+    {
+      "id": "bili-BV1weNi6sEHo",
+      "title": "最近我们很不顺利，总是在活泼开朗的外壳下隐藏自己的失落情绪",
+      "date": "2026-07-15",
+      "src": "",
+      "duration": 228,
+      "cover": "https://i0.hdslb.com/bfs/archive/f82e86294b6ff3c82e8467914ba1b3714d5a4129.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1weNi6sEHo",
+        "url": "https://www.bilibili.com/video/BV1weNi6sEHo/",
+        "view": 150
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1weNi6sEHo/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "我的悲伤是水做的"
+    },
+    {
+      "id": "bili-BV1cbKL6cEHR",
+      "title": "热烈，冒失，雨声，患失，想你 || 别离开我好不好",
+      "date": "2026-07-17",
+      "src": "",
+      "duration": 306,
+      "cover": "https://i0.hdslb.com/bfs/archive/1534df6c28982616a3bb97573665c7627c1a2314.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1cbKL6cEHR",
+        "url": "https://www.bilibili.com/video/BV1cbKL6cEHR/",
+        "view": 119
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1cbKL6cEHR/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "下雨了"
     }
   ],
-  "albums": [],
+  "albums": [
+    {
+      "id": "bili-season-8529939",
+      "title": "【沐梓溪】翻唱集",
+      "description": "我们都在某一刻成为候鸟——不是因为天性向往漂泊，而是因为有一个人，住在必须穿越几千公里云海才能抵达的远方。\n\n迁徙的终点，从来不是一个地名。\n而是那个人。",
+      "cover": "https://archive.biliimg.com/bfs/archive/dd37e2fdabc63789f884561cbfa379797611c4cf.jpg",
+      "createdAt": "2026-07-17",
+      "trackIds": [
+        "bili-BV129Vf67E8N",
+        "bili-BV1UQMt6SEKW",
+        "bili-BV1QHML6XEkX",
+        "bili-BV113Nj6qE2x",
+        "bili-BV1oSN46HEMV",
+        "bili-BV1UDNu6oER4",
+        "bili-BV1ctNC6rE6B",
+        "bili-BV1GsN96WEzx",
+        "bili-BV1weNi6sEHo",
+        "bili-BV1cbKL6cEHR"
+      ]
+    }
+  ],
   "projects": [
     {
       "id": "proj-luzzymeow-homepage",
       "title": "LuzzyMeow 个人主页",
       "description": "液态玻璃风格的综合性个人主页，含作品集播放器、项目展示、随笔、时间线等模块。基于 Vite + React + TS + Tailwind，部署于 GitHub Pages。",
       "links": [
-        { "label": "站点", "url": "https://luzzymeow.github.io/" },
-        { "label": "GitHub", "url": "https://github.com/LuzzyMeow/LuzzyMeow.github.io" }
+        {
+          "label": "站点",
+          "url": "https://luzzymeow.github.io/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/LuzzyMeow/LuzzyMeow.github.io"
+        }
       ],
-      "tags": ["React", "TypeScript", "Vite", "Tailwind", "Liquid Glass"],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind",
+        "Liquid Glass"
+      ],
       "startDate": "2026-07",
       "status": "ongoing",
       "featured": true
@@ -90,7 +393,10 @@
       "title": "Hello, World",
       "excerpt": "这是第一篇随笔，欢迎来到我的个人主页。",
       "date": "2026-07-15",
-      "tags": ["随笔", "开篇"],
+      "tags": [
+        "随笔",
+        "开篇"
+      ],
       "readingTime": 1
     }
   ],

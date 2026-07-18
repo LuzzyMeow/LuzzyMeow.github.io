@@ -1,107 +1,93 @@
-import { memo } from 'react'
-import { Section } from '../layout/Section'
-import { GlassCard } from '../glass/GlassCard'
-import { formatDateCN } from '../../lib/format'
-import type { TimelineEvent } from '../../types/manifest'
+import type { TimelineEvent } from '../../types/manifest';
+import { Icon, type IconName } from '../core/Icon';
 
-type EventType = NonNullable<TimelineEvent['type']>
-const typeColor: Record<EventType, string> = {
-  music: 'var(--sys-pink)',
-  code: 'var(--accent)',
-  study: 'var(--sys-purple)',
-  life: 'var(--sys-teal)',
-  milestone: 'var(--sys-orange)',
-  other: 'var(--text-tertiary)',
-}
+/* ============================================================
+   时间线 · 航行日志（竖轴 + 发光节点）
+   ============================================================ */
 
-interface TimelineProps { events: TimelineEvent[] }
+const TYPE_META: Record<string, { icon: IconName; pink?: boolean }> = {
+  music: { icon: 'music' },
+  code: { icon: 'github' },
+  study: { icon: 'star' },
+  life: { icon: 'mapPin', pink: true },
+  milestone: { icon: 'star', pink: true },
+  other: { icon: 'clock' },
+};
 
-/**
- * 时间线 — 暮光紫夜
- * 左侧发光圆点 + 渐变连接线
- */
-export const Timeline = memo(function Timeline({ events }: TimelineProps) {
-  if (!events || events.length === 0) {
-    return (
-      <Section id="timeline" title="时间线" subtitle="一路走来的足迹">
-        <GlassCard padding="xl">
-          <p style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: 'var(--space-8) 0', margin: 0 }}>
-            暂无时间线
-          </p>
-        </GlassCard>
-      </Section>
-    )
-  }
-
-  const colWidth = 'clamp(80px, 20vw, 120px)'
-  const dotSize = 'clamp(10px, 2.5vw, 14px)'
-
+export function Timeline({ timeline }: { timeline?: TimelineEvent[] }) {
+  if (!timeline || timeline.length === 0) return null;
   return (
-    <Section id="timeline" title="时间线" subtitle="一路走来的足迹">
-      <div>
-        {events.map((ev, index) => {
-          const color = ev.type ? typeColor[ev.type] : 'var(--text-tertiary)'
-          const isLast = index === events.length - 1
+    <div className="reveal" style={{ position: 'relative', paddingLeft: 28 }}>
+      {/* 竖轴 */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          left: 8,
+          top: 6,
+          bottom: 6,
+          width: 1,
+          background: 'linear-gradient(180deg, var(--cyan), var(--violet), var(--pink))',
+          opacity: 0.5,
+          boxShadow: '0 0 8px rgba(0,229,255,0.4)',
+        }}
+      />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)' }}>
+        {timeline.map((ev) => {
+          const meta = TYPE_META[ev.type ?? 'other'] ?? TYPE_META.other;
+          const color = meta.pink ? 'var(--pink)' : 'var(--cyan)';
           return (
-            <div key={ev.id} style={{ display: 'flex', gap: 'var(--space-4)' }}>
-              {/* 左栏 */}
-              <div style={{
-                flexShrink: 0, width: colWidth, display: 'flex',
-                flexDirection: 'column', alignItems: 'center',
-              }}>
-                <div style={{
-                  fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)',
-                  fontFamily: 'var(--font-mono)', textAlign: 'center',
-                  lineHeight: 1.3, marginBottom: 'var(--space-2)',
-                }}>
-                  {formatDateCN(ev.date)}
-                </div>
-                <div style={{
-                  width: dotSize, height: dotSize, borderRadius: '50%',
-                  background: color, border: 'none',
-                  boxShadow: `0 0 8px ${color}88, 0 0 16px ${color}44`,
-                  flexShrink: 0, zIndex: 1,
-                }} />
-                {!isLast && (
-                  <div style={{
-                    flex: 1, width: 2,
-                    background: 'linear-gradient(to bottom, var(--glass-border-accent), var(--glass-border))',
-                    marginTop: 'var(--space-1)', minHeight: 'var(--space-4)',
-                  }} />
-                )}
+            <div key={ev.id} style={{ position: 'relative' }}>
+              {/* 节点 */}
+              <span
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: -24,
+                  top: 6,
+                  width: 11,
+                  height: 11,
+                  transform: 'rotate(45deg)',
+                  background: 'var(--bg-void)',
+                  border: `1.5px solid ${color}`,
+                  boxShadow: meta.pink ? 'var(--glow-pink)' : 'var(--glow-cyan)',
+                }}
+              />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+                <span className="mono" style={{ fontSize: 'var(--text-xs)', color, letterSpacing: '0.1em', textShadow: meta.pink ? 'var(--glow-text-pink)' : 'var(--glow-text-cyan)' }}>
+                  {ev.date}
+                </span>
+                <Icon name={meta.icon} size={14} style={{ color }} />
+                <h3 style={{ fontSize: 'var(--text-md)', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>{ev.title}</h3>
               </div>
-
-              {/* 右栏 */}
-              <div style={{ flex: 1, minWidth: 0, paddingBottom: isLast ? 0 : 'var(--space-6)' }}>
-                <GlassCard padding="lg">
-                  <h3 style={{
-                    fontSize: 'var(--text-base)', fontWeight: 600,
-                    color: 'var(--text-primary)', margin: '0 0 var(--space-1) 0',
-                    letterSpacing: '-0.01em',
-                  }}>
-                    {ev.title}
-                  </h3>
-                  {ev.description && (
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
-                      {ev.description}
-                    </p>
-                  )}
-                  {ev.link && (
-                    <a href={ev.link.url} target="_blank" rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 4,
-                        fontSize: 'var(--text-xs)', color: 'var(--accent)',
-                        marginTop: 'var(--space-2)', textDecoration: 'none',
-                      }}>
-                      {ev.link.label} ↗
-                    </a>
-                  )}
-                </GlassCard>
-              </div>
+              {ev.description && (
+                <p style={{ marginTop: 'var(--space-2)', fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', maxWidth: 640 }}>
+                  {ev.description}
+                </p>
+              )}
+              {ev.link && (
+                <a
+                  href={ev.link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mono"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 5,
+                    marginTop: 'var(--space-2)',
+                    fontSize: 'var(--text-xs)',
+                    color: 'var(--cyan)',
+                    borderBottom: '1px solid var(--line-strong)',
+                  }}
+                >
+                  {ev.link.label} <Icon name="external" size={11} />
+                </a>
+              )}
             </div>
-          )
+          );
         })}
       </div>
-    </Section>
-  )
-})
+    </div>
+  );
+}

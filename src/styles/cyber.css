@@ -1,0 +1,265 @@
+/* ============================================================
+   霓虹深空 · 组件样式
+   ============================================================ */
+
+/* ---------- 霓虹切角面板 ---------- */
+.neon-frame {
+  position: relative;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--line-strong), var(--line) 40%, rgba(255, 45, 150, 0.18));
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  transition: filter var(--duration-normal) var(--ease-neon);
+}
+.neon-frame:hover {
+  filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.22));
+}
+.neon-frame-body {
+  position: relative;
+  height: 100%;
+  background: var(--bg-panel);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  clip-path: polygon(0 0, calc(100% - 13.5px) 0, 100% 13.5px, 100% 100%, 13.5px 100%, 0 calc(100% - 13.5px));
+  overflow: hidden;
+}
+.neon-frame-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.55), transparent);
+  opacity: 0.6;
+  pointer-events: none;
+}
+/* hover 边缘扫光 */
+.neon-scan::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(0, 229, 255, 0.08) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform var(--duration-slow) var(--ease-neon);
+  pointer-events: none;
+}
+.neon-scan:hover::after {
+  transform: translateX(120%);
+}
+
+/* ---------- 霓虹按钮 ---------- */
+.neon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-neon);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  user-select: none;
+}
+.neon-btn:hover {
+  background: rgba(0, 229, 255, 0.14);
+  box-shadow: var(--glow-cyan);
+  text-shadow: var(--glow-text-cyan);
+}
+.neon-btn:active { transform: scale(0.96); }
+
+.neon-btn-primary {
+  color: var(--bg-void);
+  background: linear-gradient(135deg, var(--cyan), var(--cyan-dim));
+  border-color: transparent;
+  font-weight: 700;
+}
+.neon-btn-primary:hover {
+  background: linear-gradient(135deg, #5CF0FF, var(--cyan));
+  color: var(--bg-void);
+  text-shadow: none;
+}
+
+.neon-btn-pink {
+  color: var(--pink);
+  background: rgba(255, 45, 150, 0.06);
+  border-color: var(--line-pink);
+}
+.neon-btn-pink:hover {
+  background: rgba(255, 45, 150, 0.14);
+  box-shadow: var(--glow-pink);
+  text-shadow: var(--glow-text-pink);
+}
+
+.neon-btn-sm { padding: 6px 14px; font-size: var(--text-xs); }
+.neon-btn-lg { padding: 14px 30px; font-size: var(--text-base); }
+.neon-btn-block { width: 100%; }
+
+/* 图标按钮 */
+.neon-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-neon);
+}
+.neon-icon-btn:hover {
+  color: var(--cyan);
+  border-color: var(--line-strong);
+  background: rgba(0, 229, 255, 0.08);
+  box-shadow: var(--glow-cyan);
+}
+.neon-icon-btn:active { transform: scale(0.9); }
+.neon-icon-btn.is-active {
+  color: var(--cyan);
+  border-color: var(--line-strong);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+/* ---------- 霓虹标签 ---------- */
+.neon-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 2px 9px;
+  transition: all var(--duration-fast) var(--ease-neon);
+  white-space: nowrap;
+}
+.neon-tag:hover { color: var(--cyan); border-color: var(--line-strong); }
+.neon-tag.is-active {
+  color: var(--bg-void);
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  font-weight: 700;
+}
+.neon-tag-pink { color: var(--pink); border-color: var(--line-pink); }
+.neon-tag-pink:hover { color: var(--pink); border-color: var(--pink); }
+
+/* ---------- 文字特效 ---------- */
+.text-glow-cyan { color: var(--cyan); text-shadow: var(--glow-text-cyan); }
+.text-glow-pink { color: var(--pink); text-shadow: var(--glow-text-pink); }
+.grad-text {
+  background: var(--grad-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- 扫描线覆盖 ---------- */
+.scanlines { position: relative; }
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(232, 240, 255, 0.022) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- 光标闪烁 ---------- */
+.cursor-blink {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 0.1em;
+  background: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  vertical-align: -0.08em;
+  animation: cursorBlink 1.1s steps(2, start) infinite;
+}
+@keyframes cursorBlink { to { visibility: hidden; } }
+
+/* ---------- 入场 reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity var(--duration-slow) var(--ease-neon), transform var(--duration-slow) var(--ease-neon);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- 播放中均衡器指示 ---------- */
+.eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.eq span {
+  width: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.8);
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+.eq span:nth-child(1) { animation-delay: 0s; }
+.eq span:nth-child(2) { animation-delay: 0.25s; }
+.eq span:nth-child(3) { animation-delay: 0.5s; }
+@keyframes eqBounce { 0%, 100% { height: 4px; } 50% { height: 12px; } }
+
+/* ---------- 霓虹标题闪烁（极轻微） ---------- */
+.neon-flicker { animation: neonFlicker 6s linear infinite; }
+@keyframes neonFlicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.72; }
+  94% { opacity: 1; }
+  96% { opacity: 0.85; }
+  97% { opacity: 1; }
+}
+
+/* ---------- 分割线 ---------- */
+.neon-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+
+/* ---------- 章节标题 ---------- */
+.section-title-wrap { margin-bottom: var(--space-10); }
+.section-index {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--pink);
+  letter-spacing: 0.2em;
+  text-shadow: var(--glow-text-pink);
+}
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-top: var(--space-1);
+}
+.section-title::before {
+  content: '▸';
+  color: var(--cyan);
+  text-shadow: var(--glow-text-cyan);
+}
+.section-subtitle {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-scan::after, .neon-flicker, .eq span { animation: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

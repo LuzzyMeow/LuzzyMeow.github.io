@@ -1,63 +1,66 @@
-import { memo } from 'react'
-import { Section } from '../layout/Section'
-import { GlassCard } from '../glass/GlassCard'
-import type { Friend } from '../../types/manifest'
+import type { Friend } from '../../types/manifest';
+import { Icon } from '../core/Icon';
 
-interface FriendsProps { friends: Friend[] }
+/* ============================================================
+   友链 · 通讯阵列卡片
+   ============================================================ */
 
-/**
- * 友链 — 暮光紫夜
- * 网格 + 渐边 hover 发光
- */
-export const Friends = memo(function Friends({ friends }: FriendsProps) {
-  if (!friends || friends.length === 0) {
-    return (
-      <Section id="friends" title="友链" subtitle="朋友们">
-        <GlassCard padding="xl">
-          <p style={{ textAlign: 'center', color: 'var(--text-tertiary)', padding: 'var(--space-8) 0', margin: 0 }}>
-            暂无友链，欢迎与我交换
-          </p>
-        </GlassCard>
-      </Section>
-    )
-  }
-
+export function Friends({ friends }: { friends?: Friend[] }) {
+  if (!friends || friends.length === 0) return null;
   return (
-    <Section id="friends" title="友链" subtitle="朋友们">
-      <div style={{
+    <div
+      style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
         gap: 'var(--space-4)',
-      }}>
-        {friends.map((f) => (
-          <a key={f.id} href={f.url} target="_blank" rel="noopener noreferrer"
-            style={{ textDecoration: 'none', color: 'inherit' }}>
-            <GlassCard hover padding="md" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
-              <div style={{
-                flexShrink: 0, width: 48, height: 48, borderRadius: '50%',
-                background: f.avatar
-                  ? `url(${f.avatar}) center/cover`
-                  : 'linear-gradient(135deg, var(--accent), var(--sys-pink))',
-                border: '2px solid rgba(255,255,255,0.1)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'rgba(255,255,255,0.9)', fontSize: 20, fontWeight: 700,
-              }}>
-                {!f.avatar && f.name.charAt(0).toUpperCase()}
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 2 }}>
-                  {f.name}
-                </div>
-                {f.description && (
-                  <div className="truncate" style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>
-                    {f.description}
-                  </div>
-                )}
-              </div>
-            </GlassCard>
-          </a>
-        ))}
-      </div>
-    </Section>
-  )
-})
+      }}
+    >
+      {friends.map((f) => (
+        <a
+          key={f.id}
+          href={f.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="neon-frame reveal"
+          style={{ display: 'block' }}
+        >
+          <div className="neon-frame-body neon-scan" style={{ padding: 'var(--space-4)', display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
+            {/* 头像 */}
+            <span
+              style={{
+                width: 44,
+                height: 44,
+                flexShrink: 0,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 'var(--radius-sm)',
+                border: '1px solid var(--line-strong)',
+                background: 'rgba(0,229,255,0.08)',
+                color: 'var(--cyan)',
+                fontFamily: 'var(--font-display)',
+                fontWeight: 700,
+                fontSize: 'var(--text-md)',
+                overflow: 'hidden',
+                clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+              }}
+            >
+              {f.avatar ? (
+                <img src={f.avatar} alt={f.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                f.name.charAt(0).toUpperCase()
+              )}
+            </span>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <p className="truncate" style={{ fontSize: 'var(--text-base)', fontWeight: 500, color: 'var(--text-primary)' }}>{f.name}</p>
+              {f.description && (
+                <p className="truncate" style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', marginTop: 2 }}>{f.description}</p>
+              )}
+            </div>
+            <Icon name="link" size={15} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+}

@@ -125,6 +125,19 @@ export interface Track {
   note?: string
   /** 下载资源 */
   download: DownloadSources
+  /**
+   * B 站合集来源信息
+   * 当曲目来自 B 站合集时填充，点击将外链跳转到 B 站播放
+   * 此时 src 可为空字符串，站内播放器不播放
+   */
+  bilibili?: {
+    /** 视频 BV 号，如 BV129Vf67E8N */
+    bvid: string
+    /** 完整 B 站视频 URL */
+    url: string
+    /** 播放量 */
+    view?: number
+  }
 }
 
 /** 专辑（合集） */

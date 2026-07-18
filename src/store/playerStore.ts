@@ -26,6 +26,8 @@ export interface PlayerState {
   volume: number
   /** 是否静音 */
   isMuted: boolean
+  /** 播放速度 */
+  playbackRate: number
   /** 循环模式 */
   loopMode: LoopMode
   /** 单曲循环重放信号：每次切换单曲循环重播时自增，由 audio 元素监听 */
@@ -48,6 +50,8 @@ export interface PlayerState {
   setVolume: (volume: number) => void
   /** 切换静音 */
   toggleMute: () => void
+  /** 设置播放速度 */
+  setPlaybackRate: (rate: number) => void
   /** 设置循环模式 */
   setLoopMode: (mode: LoopMode) => void
   /** 设置当前时间（由 audio timeupdate 触发） */
@@ -95,6 +99,7 @@ export const usePlayerStore = create<PlayerState>()(
       duration: 0,
       volume: 0.8,
       isMuted: false,
+      playbackRate: 1,
       loopMode: 'list',
       replaySignal: 0,
 
@@ -188,6 +193,8 @@ export const usePlayerStore = create<PlayerState>()(
 
       toggleMute: () => set((s) => ({ isMuted: !s.isMuted })),
 
+      setPlaybackRate: (rate) => set({ playbackRate: rate }),
+
       setLoopMode: (mode) => set({ loopMode: mode }),
 
       setCurrentTime: (time) => set({ currentTime: time }),
@@ -207,10 +214,11 @@ export const usePlayerStore = create<PlayerState>()(
     {
       name: 'luzzymeow-player',
       storage: createJSONStorage(() => localStorage),
-      // 仅持久化 volume 和 loopMode
+      // 仅持久化 volume、loopMode、playbackRate
       partialize: (state) => ({
         volume: state.volume,
         loopMode: state.loopMode,
+        playbackRate: state.playbackRate,
       }),
     },
   ),
