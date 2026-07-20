@@ -123,7 +123,7 @@
       "bilibili": {
         "bvid": "BV129Vf67E8N",
         "url": "https://www.bilibili.com/video/BV129Vf67E8N/",
-        "view": 128
+        "view": 132
       },
       "download": {
         "mp3": "",
@@ -145,7 +145,7 @@
       "bilibili": {
         "bvid": "BV1UQMt6SEKW",
         "url": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
-        "view": 368
+        "view": 372
       },
       "download": {
         "mp3": "",
@@ -168,7 +168,7 @@
       "bilibili": {
         "bvid": "BV1QHML6XEkX",
         "url": "https://www.bilibili.com/video/BV1QHML6XEkX/",
-        "view": 208
+        "view": 210
       },
       "download": {
         "mp3": "",
@@ -191,7 +191,7 @@
       "bilibili": {
         "bvid": "BV113Nj6qE2x",
         "url": "https://www.bilibili.com/video/BV113Nj6qE2x/",
-        "view": 277
+        "view": 282
       },
       "download": {
         "mp3": "",
@@ -214,7 +214,7 @@
       "bilibili": {
         "bvid": "BV1oSN46HEMV",
         "url": "https://www.bilibili.com/video/BV1oSN46HEMV/",
-        "view": 308
+        "view": 313
       },
       "download": {
         "mp3": "",
@@ -237,7 +237,7 @@
       "bilibili": {
         "bvid": "BV1UDNu6oER4",
         "url": "https://www.bilibili.com/video/BV1UDNu6oER4/",
-        "view": 555
+        "view": 557
       },
       "download": {
         "mp3": "",
@@ -260,7 +260,7 @@
       "bilibili": {
         "bvid": "BV1ctNC6rE6B",
         "url": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
-        "view": 193
+        "view": 195
       },
       "download": {
         "mp3": "",
@@ -283,7 +283,7 @@
       "bilibili": {
         "bvid": "BV1GsN96WEzx",
         "url": "https://www.bilibili.com/video/BV1GsN96WEzx/",
-        "view": 651
+        "view": 665
       },
       "download": {
         "mp3": "",
@@ -306,7 +306,7 @@
       "bilibili": {
         "bvid": "BV1weNi6sEHo",
         "url": "https://www.bilibili.com/video/BV1weNi6sEHo/",
-        "view": 192
+        "view": 196
       },
       "download": {
         "mp3": "",
@@ -352,7 +352,7 @@
       "bilibili": {
         "bvid": "BV1vPKM6PEDQ",
         "url": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
-        "view": 1051
+        "view": 1060
       },
       "download": {
         "mp3": "",
@@ -375,7 +375,7 @@
       "bilibili": {
         "bvid": "BV1vRK26CEDH",
         "url": "https://www.bilibili.com/video/BV1vRK26CEDH/",
-        "view": 203
+        "view": 239
       },
       "download": {
         "mp3": "",
@@ -398,7 +398,7 @@
       "bilibili": {
         "bvid": "BV17DK26jE9N",
         "url": "https://www.bilibili.com/video/BV17DK26jE9N/",
-        "view": 150
+        "view": 174
       },
       "download": {
         "mp3": "",
@@ -421,7 +421,7 @@
       "bilibili": {
         "bvid": "BV1quK265E1a",
         "url": "https://www.bilibili.com/video/BV1quK265E1a/",
-        "view": 110
+        "view": 127
       },
       "download": {
         "mp3": "",
@@ -429,6 +429,29 @@
         "losslessLabel": "B站"
       },
       "originalArtist": "万有引力"
+    },
+    {
+      "id": "bili-BV1T8KW6aEpc",
+      "title": "为什么对待感情总是 自我内耗 到 自我折磨 到 自我折磨",
+      "date": "2026-07-20",
+      "src": "",
+      "duration": 165,
+      "cover": "https://i0.hdslb.com/bfs/archive/2490533884a728f092da40d02c9fefe88185417f.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1T8KW6aEpc",
+        "url": "https://www.bilibili.com/video/BV1T8KW6aEpc/",
+        "view": 13
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1T8KW6aEpc/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "慢冷"
     }
   ],
   "albums": [
@@ -452,7 +475,8 @@
         "bili-BV1vPKM6PEDQ",
         "bili-BV1vRK26CEDH",
         "bili-BV17DK26jE9N",
-        "bili-BV1quK265E1a"
+        "bili-BV1quK265E1a",
+        "bili-BV1T8KW6aEpc"
       ]
     }
   ],
