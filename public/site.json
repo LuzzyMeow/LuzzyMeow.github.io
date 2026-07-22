@@ -145,7 +145,7 @@
       "bilibili": {
         "bvid": "BV1UQMt6SEKW",
         "url": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
-        "view": 393
+        "view": 398
       },
       "download": {
         "mp3": "",
@@ -191,7 +191,7 @@
       "bilibili": {
         "bvid": "BV113Nj6qE2x",
         "url": "https://www.bilibili.com/video/BV113Nj6qE2x/",
-        "view": 293
+        "view": 297
       },
       "download": {
         "mp3": "",
@@ -214,7 +214,7 @@
       "bilibili": {
         "bvid": "BV1oSN46HEMV",
         "url": "https://www.bilibili.com/video/BV1oSN46HEMV/",
-        "view": 338
+        "view": 357
       },
       "download": {
         "mp3": "",
@@ -237,7 +237,7 @@
       "bilibili": {
         "bvid": "BV1UDNu6oER4",
         "url": "https://www.bilibili.com/video/BV1UDNu6oER4/",
-        "view": 575
+        "view": 578
       },
       "download": {
         "mp3": "",
@@ -260,7 +260,7 @@
       "bilibili": {
         "bvid": "BV1ctNC6rE6B",
         "url": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
-        "view": 204
+        "view": 206
       },
       "download": {
         "mp3": "",
@@ -283,7 +283,7 @@
       "bilibili": {
         "bvid": "BV1GsN96WEzx",
         "url": "https://www.bilibili.com/video/BV1GsN96WEzx/",
-        "view": 714
+        "view": 730
       },
       "download": {
         "mp3": "",
@@ -306,7 +306,7 @@
       "bilibili": {
         "bvid": "BV1weNi6sEHo",
         "url": "https://www.bilibili.com/video/BV1weNi6sEHo/",
-        "view": 205
+        "view": 206
       },
       "download": {
         "mp3": "",
@@ -329,7 +329,7 @@
       "bilibili": {
         "bvid": "BV1cbKL6cEHR",
         "url": "https://www.bilibili.com/video/BV1cbKL6cEHR/",
-        "view": 174
+        "view": 176
       },
       "download": {
         "mp3": "",
@@ -352,7 +352,7 @@
       "bilibili": {
         "bvid": "BV1vPKM6PEDQ",
         "url": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
-        "view": 1102
+        "view": 1111
       },
       "download": {
         "mp3": "",
@@ -375,7 +375,7 @@
       "bilibili": {
         "bvid": "BV1vRK26CEDH",
         "url": "https://www.bilibili.com/video/BV1vRK26CEDH/",
-        "view": 319
+        "view": 327
       },
       "download": {
         "mp3": "",
@@ -398,7 +398,7 @@
       "bilibili": {
         "bvid": "BV17DK26jE9N",
         "url": "https://www.bilibili.com/video/BV17DK26jE9N/",
-        "view": 251
+        "view": 259
       },
       "download": {
         "mp3": "",
@@ -406,29 +406,6 @@
         "losslessLabel": "B站"
       },
       "originalArtist": "春夜坠落"
-    },
-    {
-      "id": "bili-BV1quK265E1a",
-      "title": "命中注定 我们会在一起 For.星光小太阳",
-      "date": "2026-07-20",
-      "src": "",
-      "duration": 246,
-      "cover": "https://i1.hdslb.com/bfs/archive/af78a7a854e72bcc9e7ed5ba4cd6c9b2999d3427.jpg",
-      "tags": [
-        "B站",
-        "翻唱"
-      ],
-      "bilibili": {
-        "bvid": "BV1quK265E1a",
-        "url": "https://www.bilibili.com/video/BV1quK265E1a/",
-        "view": 235
-      },
-      "download": {
-        "mp3": "",
-        "lossless": "https://www.bilibili.com/video/BV1quK265E1a/",
-        "losslessLabel": "B站"
-      },
-      "originalArtist": "万有引力"
     },
     {
       "id": "bili-BV1T8KW6aEpc",
@@ -444,7 +421,7 @@
       "bilibili": {
         "bvid": "BV1T8KW6aEpc",
         "url": "https://www.bilibili.com/video/BV1T8KW6aEpc/",
-        "view": 229
+        "view": 253
       },
       "download": {
         "mp3": "",
@@ -452,6 +429,29 @@
         "losslessLabel": "B站"
       },
       "originalArtist": "慢冷"
+    },
+    {
+      "id": "bili-BV1E9gr6CENx",
+      "title": "为什么受不了我这个精神洁癖患者，还要说什么成为朋友的谎言",
+      "date": "2026-07-22",
+      "src": "",
+      "duration": 279,
+      "cover": "https://i2.hdslb.com/bfs/archive/a6960ad5ef1d1533799b00e205eb8bd4450ce228.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1E9gr6CENx",
+        "url": "https://www.bilibili.com/video/BV1E9gr6CENx/",
+        "view": 58
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1E9gr6CENx/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "默"
     }
   ],
   "albums": [
@@ -460,7 +460,7 @@
       "title": "【沐梓溪】翻唱集",
       "description": "我们都在某一刻成为候鸟——不是因为天性向往漂泊，而是因为有一个人，住在必须穿越几千公里云海才能抵达的远方。\n\n迁徙的终点，从来不是一个地名。\n而是那个人。",
       "cover": "https://archive.biliimg.com/bfs/archive/dd37e2fdabc63789f884561cbfa379797611c4cf.jpg",
-      "createdAt": "2026-07-20",
+      "createdAt": "2026-07-22",
       "trackIds": [
         "bili-BV129Vf67E8N",
         "bili-BV1UQMt6SEKW",
@@ -475,8 +475,8 @@
         "bili-BV1vPKM6PEDQ",
         "bili-BV1vRK26CEDH",
         "bili-BV17DK26jE9N",
-        "bili-BV1quK265E1a",
-        "bili-BV1T8KW6aEpc"
+        "bili-BV1T8KW6aEpc",
+        "bili-BV1E9gr6CENx"
       ]
     }
   ],
