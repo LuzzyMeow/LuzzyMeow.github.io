@@ -123,7 +123,7 @@
       "bilibili": {
         "bvid": "BV129Vf67E8N",
         "url": "https://www.bilibili.com/video/BV129Vf67E8N/",
-        "view": 139
+        "view": 140
       },
       "download": {
         "mp3": "",
@@ -145,7 +145,7 @@
       "bilibili": {
         "bvid": "BV1UQMt6SEKW",
         "url": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
-        "view": 398
+        "view": 401
       },
       "download": {
         "mp3": "",
@@ -191,7 +191,7 @@
       "bilibili": {
         "bvid": "BV113Nj6qE2x",
         "url": "https://www.bilibili.com/video/BV113Nj6qE2x/",
-        "view": 297
+        "view": 300
       },
       "download": {
         "mp3": "",
@@ -214,14 +214,14 @@
       "bilibili": {
         "bvid": "BV1oSN46HEMV",
         "url": "https://www.bilibili.com/video/BV1oSN46HEMV/",
-        "view": 357
+        "view": 362
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1oSN46HEMV/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "SunoAI"
+      "originalArtist": "琥珀色麦芽糖"
     },
     {
       "id": "bili-BV1UDNu6oER4",
@@ -237,7 +237,7 @@
       "bilibili": {
         "bvid": "BV1UDNu6oER4",
         "url": "https://www.bilibili.com/video/BV1UDNu6oER4/",
-        "view": 578
+        "view": 583
       },
       "download": {
         "mp3": "",
@@ -260,7 +260,7 @@
       "bilibili": {
         "bvid": "BV1ctNC6rE6B",
         "url": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
-        "view": 206
+        "view": 208
       },
       "download": {
         "mp3": "",
@@ -283,7 +283,7 @@
       "bilibili": {
         "bvid": "BV1GsN96WEzx",
         "url": "https://www.bilibili.com/video/BV1GsN96WEzx/",
-        "view": 730
+        "view": 746
       },
       "download": {
         "mp3": "",
@@ -306,7 +306,7 @@
       "bilibili": {
         "bvid": "BV1weNi6sEHo",
         "url": "https://www.bilibili.com/video/BV1weNi6sEHo/",
-        "view": 206
+        "view": 207
       },
       "download": {
         "mp3": "",
@@ -329,7 +329,7 @@
       "bilibili": {
         "bvid": "BV1cbKL6cEHR",
         "url": "https://www.bilibili.com/video/BV1cbKL6cEHR/",
-        "view": 176
+        "view": 178
       },
       "download": {
         "mp3": "",
@@ -352,7 +352,7 @@
       "bilibili": {
         "bvid": "BV1vPKM6PEDQ",
         "url": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
-        "view": 1111
+        "view": 1116
       },
       "download": {
         "mp3": "",
@@ -375,7 +375,7 @@
       "bilibili": {
         "bvid": "BV1vRK26CEDH",
         "url": "https://www.bilibili.com/video/BV1vRK26CEDH/",
-        "view": 327
+        "view": 337
       },
       "download": {
         "mp3": "",
@@ -398,7 +398,7 @@
       "bilibili": {
         "bvid": "BV17DK26jE9N",
         "url": "https://www.bilibili.com/video/BV17DK26jE9N/",
-        "view": 259
+        "view": 265
       },
       "download": {
         "mp3": "",
@@ -421,7 +421,7 @@
       "bilibili": {
         "bvid": "BV1T8KW6aEpc",
         "url": "https://www.bilibili.com/video/BV1T8KW6aEpc/",
-        "view": 253
+        "view": 265
       },
       "download": {
         "mp3": "",
@@ -444,7 +444,7 @@
       "bilibili": {
         "bvid": "BV1E9gr6CENx",
         "url": "https://www.bilibili.com/video/BV1E9gr6CENx/",
-        "view": 58
+        "view": 177
       },
       "download": {
         "mp3": "",
@@ -452,6 +452,29 @@
         "losslessLabel": "B站"
       },
       "originalArtist": "默"
+    },
+    {
+      "id": "bili-BV1esgC63EXD",
+      "title": "对于我们，我写了这首歌，如果能回到关系的开始，我还是会选择与你相识",
+      "date": "2026-07-22",
+      "src": "",
+      "duration": 266,
+      "cover": "https://i2.hdslb.com/bfs/archive/6021d1cfdfa3a69ac62e6f01723ba2809e6a6e5a.jpg",
+      "tags": [
+        "B站",
+        "翻唱"
+      ],
+      "bilibili": {
+        "bvid": "BV1esgC63EXD",
+        "url": "https://www.bilibili.com/video/BV1esgC63EXD/",
+        "view": 57
+      },
+      "download": {
+        "mp3": "",
+        "lossless": "https://www.bilibili.com/video/BV1esgC63EXD/",
+        "losslessLabel": "B站"
+      },
+      "originalArtist": "回想以前的我们"
     }
   ],
   "albums": [
@@ -476,7 +499,8 @@
         "bili-BV1vRK26CEDH",
         "bili-BV17DK26jE9N",
         "bili-BV1T8KW6aEpc",
-        "bili-BV1E9gr6CENx"
+        "bili-BV1E9gr6CENx",
+        "bili-BV1esgC63EXD"
       ]
     }
   ],
