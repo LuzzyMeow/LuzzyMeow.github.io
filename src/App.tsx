@@ -2,19 +2,16 @@ import { useEffect, useMemo, useState } from 'react';
 import type { SiteData } from './types/manifest';
 import { loadSiteData } from './lib/site';
 import { usePlayerStore } from './store/playerStore';
-import { StarfieldBackground } from './components/layout/StarfieldBackground';
 import { Navbar, type NavItem } from './components/layout/Navbar';
-import { HeroConsole } from './components/layout/HeroConsole';
+import { Hero } from './components/layout/Hero';
 import { SectionShell } from './components/layout/SectionShell';
 import { Footer } from './components/layout/Footer';
 import { PlayerBar } from './components/player/PlayerBar';
 import { LyricPanel } from './components/player/LyricPanel';
 import { QueuePanel } from './components/player/QueuePanel';
-import { Works } from './components/sections/Works';
+import { Works, SHOW_LOCAL_TRACKS } from './components/sections/Works';
 import { About } from './components/sections/About';
-import { Skills } from './components/sections/Skills';
 import { Projects } from './components/sections/Projects';
-import { Posts } from './components/sections/Posts';
 import { Timeline } from './components/sections/Timeline';
 import { Friends } from './components/sections/Friends';
 import { Contact } from './components/sections/Contact';
@@ -24,9 +21,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: 'hero', label: '首页' },
   { key: 'works', label: '作品' },
   { key: 'about', label: '关于' },
-  { key: 'skills', label: '技能' },
   { key: 'projects', label: '项目' },
-  { key: 'posts', label: '随笔' },
   { key: 'timeline', label: '时间线' },
   { key: 'friends', label: '友链' },
   { key: 'contact', label: '联系' },
@@ -78,9 +73,9 @@ export default function App() {
   if (error) {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-4)' }}>
-        <Icon name="x" size={40} style={{ color: 'var(--pink)' }} />
-        <p className="mono" style={{ color: 'var(--pink)', letterSpacing: '0.2em', fontSize: 'var(--text-sm)' }}>SIGNAL LOST</p>
-        <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--text-sm)' }}>site.json 加载失败：{error}</p>
+        <Icon name="x" size={36} style={{ color: 'var(--accent)' }} />
+        <p className="mono" style={{ color: 'var(--ink-soft)', letterSpacing: '0.2em', fontSize: 'var(--text-sm)' }}>数据加载失败</p>
+        <p style={{ color: 'var(--ink-faint)', fontSize: 'var(--text-sm)' }}>site.json 加载失败：{error}</p>
       </div>
     );
   }
@@ -93,8 +88,8 @@ export default function App() {
           <span style={{ width: 3 }} />
           <span style={{ width: 3 }} />
         </span>
-        <p className="mono" style={{ color: 'var(--cyan)', letterSpacing: '0.3em', fontSize: 'var(--text-sm)', textShadow: 'var(--glow-text-cyan)' }}>
-          CONNECTING…
+        <p className="mono" style={{ color: 'var(--ink-soft)', letterSpacing: '0.3em', fontSize: 'var(--text-sm)' }}>
+          加载中 · LOADING
         </p>
       </div>
     );
@@ -102,14 +97,13 @@ export default function App() {
 
   return (
     <>
-      <StarfieldBackground />
       <Navbar siteName={site.owner.name} items={NAV_ITEMS} activeKey={activeKey} onNavigate={navigate} />
 
       <main style={{ position: 'relative', zIndex: 2 }}>
-        <HeroConsole
+        <Hero
           site={site}
-          latestTrackId={latestTrack?.id ?? null}
-          trackCount={site.tracks.length}
+          latestTrack={latestTrack}
+          trackCount={site.tracks.filter((t) => t.bilibili || SHOW_LOCAL_TRACKS).length}
           albumCount={site.albums.length}
           onPlayLatest={() => latestTrack && playTrack(latestTrack, site.tracks)}
           onBrowseWorks={() => navigate('works')}
@@ -119,46 +113,34 @@ export default function App() {
           <Works tracks={site.tracks} albums={site.albums} />
         </SectionShell>
 
-        <SectionShell id="about" index={2} title="关于" subtitle="信号源识别">
+        <SectionShell id="about" index={2} title="关于" subtitle="关于我 · 自我介绍">
           <About site={site} />
         </SectionShell>
 
-        {site.skills && site.skills.length > 0 && (
-          <SectionShell id="skills" index={3} title="技能" subtitle="能力矩阵">
-            <Skills skills={site.skills} />
-          </SectionShell>
-        )}
-
         {site.projects && site.projects.length > 0 && (
-          <SectionShell id="projects" index={4} title="项目" subtitle="造物记录">
+          <SectionShell id="projects" index={3} title="项目" subtitle="GitHub 同步 · 造物记录">
             <Projects projects={site.projects} />
           </SectionShell>
         )}
 
-        {site.posts && site.posts.length > 0 && (
-          <SectionShell id="posts" index={5} title="随笔" subtitle="数据残片">
-            <Posts posts={site.posts} />
-          </SectionShell>
-        )}
-
         {site.timeline && site.timeline.length > 0 && (
-          <SectionShell id="timeline" index={6} title="时间线" subtitle="航行日志">
+          <SectionShell id="timeline" index={4} title="时间线" subtitle="CHANGELOG · 项目更新日志">
             <Timeline timeline={site.timeline} />
           </SectionShell>
         )}
 
         {site.friends && site.friends.length > 0 && (
-          <SectionShell id="friends" index={7} title="友链" subtitle="通讯阵列">
+          <SectionShell id="friends" index={5} title="友链" subtitle="通讯阵列">
             <Friends friends={site.friends} />
           </SectionShell>
         )}
 
-        <SectionShell id="contact" index={8} title="联系" subtitle="建立连接">
+        <SectionShell id="contact" index={6} title="联系" subtitle="建立连接">
           <Contact site={site} />
         </SectionShell>
       </main>
 
-      <Footer siteName={site.owner.name} sourceRepo="https://github.com/lucky9dev/luzzymeow" />
+      <Footer siteName={site.owner.name} sourceRepo="https://github.com/LuzzyMeow/LuzzyMeow.github.io" />
 
       {/* 播放器层 */}
       {currentTrack && (

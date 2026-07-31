@@ -156,6 +156,22 @@ const PATHS: Record<string, ReactNode> = {
       <circle cx="12" cy="12" r="2" />
     </>
   ),
+  arrowRight: <path d="M4 12h15m0 0-6-6m6 6-6 6" />,
+  arrowUpRight: <path d="M7 17 17 7m0 0H8.5M17 7v8.5" />,
+  arrowDown: <path d="M12 4v15m0 0 6-6m-6 6-6-6" />,
+  eye: (
+    <>
+      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
+      <circle cx="12" cy="12" r="2.8" />
+    </>
+  ),
+  headphones: (
+    <>
+      <path d="M4 14.5V13a8 8 0 0 1 16 0v1.5" />
+      <rect x="2.8" y="14" width="4.6" height="6.5" rx="1.6" />
+      <rect x="16.6" y="14" width="4.6" height="6.5" rx="1.6" />
+    </>
+  ),
 };
 
 export type IconName = keyof typeof PATHS;

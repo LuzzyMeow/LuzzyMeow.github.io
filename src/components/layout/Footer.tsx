@@ -1,7 +1,5 @@
-import { Icon } from '../core/Icon';
-
 /* ============================================================
-   页脚 · 等宽小字 + 源码链接
+   页脚 · 墨黑反白极简
    ============================================================ */
 
 interface FooterProps {
@@ -13,10 +11,12 @@ interface FooterProps {
 export function Footer({ siteName, icp, sourceRepo }: FooterProps) {
   return (
     <footer
+      className="zone-night"
       style={{
         position: 'relative',
         zIndex: 2,
-        borderTop: '1px solid var(--line)',
+        background: 'var(--night)',
+        borderTop: '1px solid var(--night-line)',
         padding: `var(--space-10) var(--content-padding) calc(var(--player-height) + var(--space-10))`,
         textAlign: 'center',
       }}
@@ -27,29 +27,29 @@ export function Footer({ siteName, icp, sourceRepo }: FooterProps) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 'var(--space-3)',
+          gap: 'var(--space-2)',
           fontSize: 'var(--text-xs)',
-          color: 'var(--text-tertiary)',
-          letterSpacing: '0.1em',
+          color: 'var(--night-soft)',
+          letterSpacing: '0.08em',
         }}
       >
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-          <Icon name="star" size={12} style={{ color: 'var(--pink)' }} />
-          © 2026 {siteName} // NEON DEEP-SPACE
-          <Icon name="star" size={12} style={{ color: 'var(--pink)' }} />
+        <span aria-hidden="true" style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 400, color: 'var(--accent-night)', lineHeight: 1 }}>
+          ♪
         </span>
+        <span>© 2026 {siteName} · 翻唱 / 原创 / 代码</span>
         <span>
           DESIGNED & BUILT BY {siteName.toUpperCase()} ·{' '}
           <a
             href={sourceRepo}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'var(--cyan)', borderBottom: '1px solid var(--line-strong)' }}
+            className="text-link"
+            style={{ fontSize: 'var(--text-xs)' }}
           >
             SOURCE
           </a>
         </span>
-        {icp && <span>{icp}</span>}
+        {icp && <span style={{ color: 'var(--night-faint)' }}>{icp}</span>}
       </div>
     </footer>
   );

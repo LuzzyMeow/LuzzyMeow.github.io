@@ -97,8 +97,8 @@ export interface Track {
   id: string
   /** 显示标题 */
   title: string
-  /** 原唱歌手（翻唱时填，原创可空） */
-  originalArtist?: string
+  /** 原唱歌名（翻唱时填，原创可空） */
+  originalTitle?: string
   /** 发布日期 YYYY-MM-DD */
   date?: string
   /** MP3 路径，相对站点根 */

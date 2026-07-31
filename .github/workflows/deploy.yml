@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # 定时同步（Sync Bilibili Season）提交 site.json 后自动重新部署
+  workflow_run:
+    workflows: ["Sync Bilibili Season"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -16,6 +20,8 @@ concurrency:
 
 jobs:
   build:
+    # 由 workflow_run 触发时，仅在同步成功后才构建部署
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -2,12 +2,12 @@ import type { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import { Icon, type IconName } from './Icon';
 
 /* ============================================================
-   霓虹按钮 · primary（实心青）/ ghost（描边）/ pink（品红幽灵）
+   按钮 · accent（朱红实心）/ outline（描边）/ dark（墨黑）/ ghost（无框）
    ============================================================ */
 
-interface NeonButtonProps {
+interface ButtonProps {
   children?: ReactNode;
-  variant?: 'primary' | 'ghost' | 'pink';
+  variant?: 'accent' | 'outline' | 'dark' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   icon?: IconName;
   iconRight?: IconName;
@@ -21,9 +21,9 @@ interface NeonButtonProps {
   ariaLabel?: string;
 }
 
-export function NeonButton({
+export function Button({
   children,
-  variant = 'ghost',
+  variant = 'outline',
   size = 'md',
   icon,
   iconRight,
@@ -35,14 +35,14 @@ export function NeonButton({
   className = '',
   style,
   ariaLabel,
-}: NeonButtonProps) {
+}: ButtonProps) {
   const cls = [
-    'neon-btn',
-    variant === 'primary' ? 'neon-btn-primary' : '',
-    variant === 'pink' ? 'neon-btn-pink' : '',
-    size === 'sm' ? 'neon-btn-sm' : '',
-    size === 'lg' ? 'neon-btn-lg' : '',
-    block ? 'neon-btn-block' : '',
+    'btn',
+    variant === 'accent' ? 'btn-accent' : '',
+    variant === 'dark' ? 'btn-dark' : '',
+    size === 'sm' ? 'btn-sm' : '',
+    size === 'lg' ? 'btn-lg' : '',
+    block ? 'btn-block' : '',
     className,
   ]
     .filter(Boolean)
@@ -50,9 +50,9 @@ export function NeonButton({
 
   const content = (
     <>
-      {icon && <Icon name={icon} size={size === 'sm' ? 15 : size === 'lg' ? 19 : 17} />}
+      {icon && <Icon name={icon} size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16} />}
       {children}
-      {iconRight && <Icon name={iconRight} size={size === 'sm' ? 15 : size === 'lg' ? 19 : 17} />}
+      {iconRight && <Icon name={iconRight} size={size === 'sm' ? 14 : size === 'lg' ? 18 : 16} />}
     </>
   );
 

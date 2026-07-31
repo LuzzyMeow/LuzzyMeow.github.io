@@ -1,11 +1,11 @@
 # LuzzyMeow 个人主页
 
-> 液态玻璃（Liquid Glass）风格的综合性个人主页
+> 暖纸·唱片内页（Editorial）风格的综合性个人主页
 > 站点：<https://luzzymeow.github.io/> · 仓库：<https://github.com/LuzzyMeow/LuzzyMeow.github.io>
 
-基于 **Vite + React 18 + TypeScript + Tailwind + Zustand** 构建，部署于 GitHub Pages。
+基于 **Vite + React 18 + TypeScript + Zustand** 构建，部署于 GitHub Pages。
 
-主页包含 9 个模块：**Hero → 作品集 → 关于我 → 技能与兴趣 → 项目展示 → 随笔 → 时间线 → 友链 → 联系方式**。其中作品集内置完整音乐播放器（频谱可视化 + LRC 歌词同步 + 播放列表 + 循环模式），支持翻唱与原创音频的播放、下载与第三方网盘无损链接跳转。
+主页包含 7 个模块：**Hero → 作品集 → 关于我 → 项目展示 → 时间线（项目更新日志）→ 友链 → 联系方式**。其中作品集内置完整音乐播放器（频谱可视化 + LRC 歌词同步 + 播放列表 + 循环模式），支持本地音频的播放与下载；B 站投稿曲目点击跳转原站观看。项目与时间线模块动态同步 GitHub 仓库与提交记录。
 
 ---
 
@@ -16,7 +16,7 @@
 - [技术栈](#技术栈)
 - [核心概念](#核心概念)
   - [数据驱动：site.json](#数据驱动sitejson)
-  - [液态玻璃设计系统](#液态玻璃设计系统)
+  - [暖纸·唱片内页设计系统](#暖纸唱片内页设计系统)
   - [音乐播放器架构](#音乐播放器架构)
 - [内容维护指南](#内容维护指南)
   - [新增翻唱/原创音频](#新增翻唱原创音频)
@@ -61,7 +61,8 @@ npm run preview
 
 ```
 LuzzyMeow.github.io/
-├── .github/workflows/deploy.yml   # GitHub Actions 自动部署
+├── .github/workflows/deploy.yml      # GitHub Actions 自动部署
+├── .github/workflows/sync-bilibili.yml  # B 站合集每小时定时同步
 ├── public/
 │   ├── audio/                     # MP3 音频文件目录
 │   ├── lyrics/                    # LRC 歌词文件目录
@@ -71,18 +72,15 @@ LuzzyMeow.github.io/
 │   └── gen-manifest.mjs           # 自动扫描 MP3 并更新 site.json
 ├── src/
 │   ├── components/
-│   │   ├── album/                 # 专辑卡片、专辑横滑列表
-│   │   ├── filter/                # 标签筛选条
-│   │   ├── glass/                 # 玻璃基础组件（GlassCard / GlassButton）
-│   │   ├── layout/                # 布局（Header / Hero / Footer / Background / Section）
-│   │   ├── player/                # 音乐播放器（AudioPlayer 主组件 + 子组件）
-│   │   ├── sections/              # 9 个主页 section 组件
-│   │   └── track/                 # 曲目卡片、曲目列表
+│   │   ├── core/                  # 基础组件（Button / Tag / Panel / Icon）
+│   │   ├── layout/                # 布局（Navbar / Hero / SectionShell / Footer）
+│   │   ├── player/                # 音乐播放器（PlayerBar 主组件 + 子组件）
+│   │   └── sections/              # 9 个主页 section 组件
 │   ├── lib/                       # 工具函数（格式化、LRC 解析、数据加载）
 │   ├── store/playerStore.ts       # Zustand 播放器状态
 │   ├── styles/
 │   │   ├── tokens.css             # 设计令牌（CSS variables）
-│   │   └── glass.css              # 玻璃类样式
+│   │   └── editorial.css          # 组件类样式
 │   ├── types/manifest.ts          # ★ 全站类型定义（与 site.json 对齐）
 │   ├── App.tsx                    # 应用入口、section 编排
 │   ├── main.tsx                   # React 挂载
@@ -104,12 +102,12 @@ LuzzyMeow.github.io/
 | 构建工具 | Vite 5 | 开发服务器 + 生产打包 |
 | 框架 | React 18 | 函数组件 + Hooks |
 | 语言 | TypeScript 5 (strict) | 全量类型 |
-| 样式 | Tailwind CSS 3 + CSS Variables | 原子类 + 设计令牌双轨 |
+| 样式 | CSS Variables 设计令牌 | `tokens.css` + `editorial.css` 双文件 |
 | 状态管理 | Zustand 4 (+ persist) | 播放器状态，持久化音量与循环模式 |
 | 图标 | lucide-react | 按需引入 |
 | 部署 | GitHub Pages + GitHub Actions | push 到 main 自动部署 |
 
-> **注**：本项目的玻璃风格主要依赖 CSS Variables 和 inline style 实现，Tailwind 仅用于少量工具类。新增组件时优先使用 `tokens.css` 中定义的变量，保持视觉一致性。
+> **注**：本项目不使用 UI 框架，视觉完全依赖 CSS Variables 设计令牌（`tokens.css`）+ 组件类（`editorial.css`）。新增组件时优先使用令牌变量，保持视觉一致性。
 
 ---
 
@@ -139,26 +137,28 @@ LuzzyMeow.github.io/
 }
 ```
 
-### 液态玻璃设计系统
+### 暖纸·唱片内页设计系统
 
 设计系统由两个文件构成，所有视觉规则集中管理：
 
 - [`src/styles/tokens.css`](src/styles/tokens.css)：设计令牌，以 CSS Variables 形式暴露
-  - 颜色：`--text-primary`、`--accent`、`--sys-red/green/orange/...`
-  - 玻璃：`--glass-bg`、`--glass-blur`、`--glass-saturation`、`--glass-border`
+  - 纸与墨：`--paper`（米白纸底）、`--ink`（墨黑文字）、`--paper-raised` / `--paper-deep`
+  - 朱红点缀：`--accent` / `--accent-deep`，仅用于高亮与 CTA
+  - 反白夜区：`--night` 系列（底部播放器与页脚用墨黑，形成唱片封套感）
   - 间距：`--space-1` ~ `--space-20`
-  - 圆角：`--radius-sm/md/lg/xl/2xl/pill`
-  - 动效：`--ease-out`、`--ease-spring`、`--duration-fast/normal/slow`
-  - 布局：`--header-height`、`--player-height`、`--content-max-width`
+  - 圆角：`--radius-sm/md/lg/pill`（印刷感小圆角，播放器胶囊例外）
+  - 动效：`--ease-out`、`--duration-fast/normal/slow`
+  - 布局：`--nav-height`、`--player-height`、`--content-max-width`
 
-- [`src/styles/glass.css`](src/styles/glass.css)：玻璃工具类
-  - `.glass` / `.glass-strong` / `.glass-subtle`：三级玻璃强度
-  - `.glass-hover`：悬浮上抬交互
-  - `.glass-button` / `.glass-button-primary`：按钮样式
-  - `.animate-fade-in-up` / `.animate-scale-in`：入场动画
-  - `.no-scrollbar` / `.truncate` / `.line-clamp-2`：实用工具
+- [`src/styles/editorial.css`](src/styles/editorial.css)：组件类样式
+  - `.btn` / `.btn-accent` / `.btn-dark`：按钮
+  - `.tag`：小胶囊标签
+  - `.card` / `.card-hover`：纸面卡片
+  - `.section-head` 系列：章节标题（编号 + 衬线标题 + 细横线）
+  - `.eq`：播放中均衡器指示
+  - `.reveal`：入场动画（尊重 `prefers-reduced-motion`）
 
-**基础组件**：[`GlassCard`](src/components/glass/GlassCard.tsx) 和 [`GlassButton`](src/components/glass/GlassButton.tsx) 封装了常用配置，新组件应优先复用。
+**基础组件**：[`Panel`](src/components/core/Panel.tsx)、[`Button`](src/components/core/Button.tsx) 和 [`Tag`](src/components/core/Tag.tsx) 封装了常用配置，新组件应优先复用。
 
 ### 音乐播放器架构
 
@@ -224,7 +224,7 @@ npm run gen-manifest
 {
   "id": "your-song",                    // 自动生成，建议保持
   "title": "显示标题",                   // 自动用文件名，建议改成中文标题
-  "originalArtist": "原唱歌手",          // 翻唱时填，原创可空
+  "originalTitle": "原唱歌名",              // 翻唱时填，原创可空
   "date": "2026-07-15",                 // 发布日期
   "src": "/audio/your-song.mp3",        // 自动生成
   "cover": "/covers/your-song.jpg",     // 可选，封面图路径
@@ -263,11 +263,11 @@ npm run gen-manifest
 | 改关于我长文 | `owner.about`（字符串数组，每段一个元素） |
 | 改社交链接 | `owner.links`（label / url / icon） |
 | 改联系方式 | `owner.contact`（email / wechat / qq / telegram / discord） |
-| 加技能 | `skills` 数组追加 SkillGroup |
 | 加项目 | `projects` 数组追加 Project |
-| 加随笔 | `posts` 数组追加 Post |
 | 加时间线 | `timeline` 数组追加 TimelineEvent |
 | 加友链 | `friends` 数组追加 Friend |
+
+> **注**：`skills`（技能）与 `posts`（随笔）两个模块已从主页下线，对应数据保留在 site.json 中但不渲染。若日后需要恢复，在 `src/App.tsx` 中重新挂载对应 Section 组件即可。
 
 **社交图标映射**：`owner.links[].icon` 支持的值：`Github` / `Youtube` / `Twitter` / `Mail` / `Link`，其他值会兜底为通用链接图标。
 
@@ -328,8 +328,7 @@ npm run lint
 
 ```tsx
 import { memo } from 'react'
-import { Section } from '../layout/Section'
-import { GlassCard } from '../glass/GlassCard'
+import { Panel } from '../core/Panel'
 import type { Book } from '../../types/manifest'
 
 interface BooksProps {
@@ -338,14 +337,14 @@ interface BooksProps {
 
 export const Books = memo(function Books({ books }: BooksProps) {
   if (books.length === 0) {
-    return <GlassCard padding="lg">暂无书单</GlassCard>
+    return <Panel style={{ padding: 'var(--space-6)' }}>暂无书单</Panel>
   }
   return (
     <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
       {books.map((book) => (
-        <GlassCard key={book.id} padding="md" hover>
+        <Panel key={book.id} hover style={{ padding: 'var(--space-4)' }}>
           {/* 渲染逻辑 */}
-        </GlassCard>
+        </Panel>
       ))}
     </div>
   )
@@ -359,7 +358,7 @@ export const Books = memo(function Books({ books }: BooksProps) {
 ```ts
 // 曲目
 interface Track {
-  id: string; title: string; originalArtist?: string;
+  id: string; title: string; originalTitle?: string;
   date?: string; src: string; duration?: number;
   cover?: string; lyrics?: string;
   tags?: string[];  // ★ 建议含 "翻唱" 或 "原创"
@@ -397,10 +396,23 @@ push 到 main
   → Checkout 代码
   → 安装依赖 (npm ci)
   → 运行 gen-manifest（同步音频文件到 site.json）
+  → 运行 sync-bilibili（拉取 B 站合集最新投稿）
   → 生产构建 (npm run build)
   → 上传 dist/ 为 Pages artifact
   → 部署到 GitHub Pages
 ```
+
+**B 站投稿动态同步**：[`.github/workflows/sync-bilibili.yml`](.github/workflows/sync-bilibili.yml) 每小时自动运行一次：
+
+```
+cron 每小时
+  → 拉取 B 站合集（seasons_archives_list，无需登录）
+  → 更新 public/site.json（新增/替换 B 站来源曲目，保留本地曲目）
+  → 有变更则提交并 push
+  → deploy.yml 通过 workflow_run 检测到同步完成，自动重新构建部署
+```
+
+因此用户在网页上看到的最长滞后约 1 小时（新投稿发布后一小时内出现在曲目表）。也可手动触发：Actions 页面运行 "Sync Bilibili Season"，或本地 `node scripts/sync-bilibili.mjs` 后 push。
 
 **注意事项**：
 
@@ -440,7 +452,7 @@ npm run dev
 
 **Q: 如何换主题色？**
 
-编辑 [`src/styles/tokens.css`](src/styles/tokens.css) 中的 `--accent` 和 `--bg-gradient-*` 等变量即可全站生效。
+编辑 [`src/styles/tokens.css`](src/styles/tokens.css) 中的 `--accent`（朱红）与 `--paper`（纸底）等变量即可全站生效。
 
 **Q: build 产出 tsc 错误怎么办？**
 

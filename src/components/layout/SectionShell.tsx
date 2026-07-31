@@ -1,7 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 
 /* ============================================================
-   章节外壳 · 编号 + ▸ 标题 + 入场 reveal
+   章节外壳 · 编号 + 衬线标题 + 细横线 + 入场 reveal
    ============================================================ */
 
 interface SectionShellProps {
@@ -46,9 +46,12 @@ export function SectionShell({ id, index, title, subtitle, children }: SectionSh
         scrollMarginTop: 'calc(var(--nav-height) + var(--space-4))',
       }}
     >
-      <div className="section-title-wrap reveal">
-        <span className="section-index mono">{String(index).padStart(2, '0')} //</span>
-        <h2 className="section-title">{title}</h2>
+      <div className="section-head reveal">
+        <div className="section-head-row">
+          <span className="section-no mono">{String(index).padStart(2, '0')}</span>
+          <h2 className="section-title">{title}</h2>
+          <span className="section-rule" aria-hidden="true" />
+        </div>
         {subtitle && <p className="section-subtitle">{subtitle}</p>}
       </div>
       {children}

@@ -3,7 +3,7 @@ import type { SiteData } from '../../types/manifest';
 import { Icon, type IconName } from '../core/Icon';
 
 /* ============================================================
-   联系 · 通讯频道（复制 + 外链）
+   联系 · 频道列表（复制 + 外链）
    ============================================================ */
 
 interface Channel {
@@ -40,41 +40,56 @@ export function Contact({ site }: { site: SiteData }) {
   if (channels.length === 0) return null;
 
   return (
-    <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', maxWidth: 720 }}>
+    <div className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', maxWidth: 680 }}>
       {channels.map((ch) => (
-        <div key={ch.label + ch.value} className="neon-frame">
-          <div className="neon-frame-body neon-scan" style={{ padding: 'var(--space-4) var(--space-5)', display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-            <span
-              style={{
-                width: 38,
-                height: 38,
-                flexShrink: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--cyan)',
-                border: '1px solid var(--line-strong)',
-                background: 'rgba(0,229,255,0.07)',
-                clipPath: 'polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px))',
-              }}
-            >
-              <Icon name={ch.icon} size={17} />
-            </span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <p className="mono" style={{ fontSize: 10, letterSpacing: '0.2em', color: 'var(--text-tertiary)' }}>{ch.label}</p>
-              <p className="truncate mono" style={{ fontSize: 'var(--text-sm)', color: 'var(--text-primary)', marginTop: 2 }}>{ch.value}</p>
-            </div>
-            {ch.copyable && (
-              <button type="button" className="neon-icon-btn" onClick={() => copy(ch)} aria-label={`复制 ${ch.label}`}>
-                <Icon name={copied === ch.label ? 'check' : 'copy'} size={16} style={copied === ch.label ? { color: 'var(--cyan)' } : undefined} />
-              </button>
-            )}
-            {ch.href && (
-              <a href={ch.href} target="_blank" rel="noopener noreferrer" className="neon-icon-btn" aria-label={`打开 ${ch.label}`}>
-                <Icon name="external" size={16} />
-              </a>
-            )}
+        <div
+          key={ch.label + ch.value}
+          className="card"
+          style={{
+            padding: 'var(--space-3) var(--space-5)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'var(--space-4)',
+          }}
+        >
+          <span
+            style={{
+              width: 38,
+              height: 38,
+              flexShrink: 0,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--accent)',
+              border: '1px solid var(--line)',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--accent-soft)',
+            }}
+          >
+            <Icon name={ch.icon} size={17} />
+          </span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p className="mono" style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--ink-faint)' }}>
+              {ch.label}
+            </p>
+            <p className="truncate mono" style={{ fontSize: 'var(--text-sm)', color: 'var(--ink)', marginTop: 2 }}>
+              {ch.value}
+            </p>
           </div>
+          {ch.copyable && (
+            <button type="button" className="icon-btn" onClick={() => copy(ch)} aria-label={`复制 ${ch.label}`}>
+              <Icon
+                name={copied === ch.label ? 'check' : 'copy'}
+                size={16}
+                style={copied === ch.label ? { color: 'var(--accent)' } : undefined}
+              />
+            </button>
+          )}
+          {ch.href && (
+            <a href={ch.href} target="_blank" rel="noopener noreferrer" className="icon-btn" aria-label={`打开 ${ch.label}`}>
+              <Icon name="arrowUpRight" size={16} />
+            </a>
+          )}
         </div>
       ))}
     </div>

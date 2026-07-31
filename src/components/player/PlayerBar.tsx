@@ -4,7 +4,7 @@ import { Icon } from '../core/Icon';
 import type { LoopMode } from '../../types/manifest';
 
 /* ============================================================
-   底部播放器栏 · 封面 + 信息 + 控制 + 功能按钮
+   底部播放器 · 墨黑胶囊（悬浮）+ 朱红播放键
    ============================================================ */
 
 interface PlayerBarProps {
@@ -94,7 +94,7 @@ export function PlayerBar({ onToggleLyric, onToggleQueue, isLyricOpen, isQueueOp
     const ms = (navigator as any).mediaSession;
     ms.metadata = new MediaMetadata({
       title: track.title,
-      artist: track.originalArtist ?? '',
+      artist: track.originalTitle ?? '',
       album: '',
       artwork: track.cover ? [{ src: track.cover, sizes: '512x512' }] : [],
     });
@@ -141,180 +141,177 @@ export function PlayerBar({ onToggleLyric, onToggleQueue, isLyricOpen, isQueueOp
 
   return (
     <div
+      className="zone-night"
       style={{
         position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
+        bottom: 14,
+        left: '50%',
+        transform: 'translateX(-50%)',
         zIndex: 60,
-        height: 'var(--player-height)',
-        background: 'rgba(5, 6, 15, 0.92)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderTop: '1px solid var(--line)',
-        boxShadow: '0 -8px 40px rgba(0,0,0,0.4)',
+        width: 'min(920px, calc(100% - 28px))',
       }}
     >
-      {/* 进度条 */}
-      <ProgressBar
-        currentTime={currentTime}
-        duration={duration}
-        onSeek={(t) => {
-          seek(t);
-          if (audio) audio.currentTime = t;
-        }}
-      />
-
       <div
         style={{
-          maxWidth: 'var(--content-max-width)',
-          margin: '0 auto',
-          height: 'calc(var(--player-height) - 2px)',
-          padding: '0 var(--content-padding)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 'var(--space-4)',
+          position: 'relative',
+          background: 'rgba(26, 22, 18, 0.97)',
+          border: '1px solid var(--night-line)',
+          borderRadius: 'var(--radius-pill)',
+          boxShadow: 'var(--shadow-player)',
+          overflow: 'hidden',
         }}
       >
-        {/* 左侧：封面 + 信息 */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', flex: 1, minWidth: 0 }}>
-          <div
-            style={{
-              width: 48,
-              height: 48,
-              borderRadius: 'var(--radius-sm)',
-              overflow: 'hidden',
-              border: '1px solid var(--line)',
-              flexShrink: 0,
-              boxShadow: isPlaying ? '0 0 12px rgba(0,229,255,0.25)' : 'none',
-            }}
-          >
-            {track.cover ? (
-              <img src={track.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            ) : (
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  background: 'var(--bg-panel)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--text-tertiary)',
-                }}
-              >
-                <Icon name="music" size={18} />
-              </div>
-            )}
-          </div>
-          <div style={{ minWidth: 0 }}>
-            <p className="truncate" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)', color: 'var(--text-primary)' }}>
-              {track.title}
-            </p>
-            <p className="truncate" style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', marginTop: 2 }}>
-              {track.originalArtist ? `原唱 ${track.originalArtist}` : 'LuzzyMeow'}
-            </p>
-          </div>
-        </div>
+        {/* 进度条 */}
+        <ProgressBar
+          currentTime={currentTime}
+          duration={duration}
+          onSeek={(t) => {
+            seek(t);
+            if (audio) audio.currentTime = t;
+          }}
+        />
 
-        {/* 中间：控制 */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', flex: '0 0 auto', justifyContent: 'center' }}>
-          <button type="button" className="neon-icon-btn" onClick={prev} aria-label="上一首">
-            <Icon name="skipBack" size={20} />
-          </button>
-          <button
-            type="button"
-            aria-label={isPlaying ? '暂停' : '播放'}
-            onClick={togglePlay}
-            style={{
-              width: 44,
-              height: 44,
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 'var(--radius-sm)',
-              border: '1px solid var(--cyan)',
-              background: 'rgba(0,229,255,0.12)',
-              color: 'var(--cyan)',
-              cursor: 'pointer',
-              boxShadow: 'var(--glow-cyan)',
-              transition: 'transform var(--duration-fast) var(--ease-neon)',
-            }}
-            onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.9)')}
-            onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-          >
-            <Icon name={isPlaying ? 'pause' : 'play'} size={22} />
-          </button>
-          <button type="button" className="neon-icon-btn" onClick={next} aria-label="下一首">
-            <Icon name="skipForward" size={20} />
-          </button>
-        </div>
-
-        {/* 右侧：功能按钮 */}
         <div
           style={{
+            height: 66,
+            padding: '0 14px 0 18px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'flex-end',
-            gap: 'var(--space-2)',
-            flex: 1,
+            gap: 'var(--space-4)',
           }}
         >
-          {/* 播放速度 */}
-          <button
-            type="button"
-            className="mono neon-icon-btn"
-            onClick={() => {
-              const idx = RATES.indexOf(playbackRate);
-              const nextIdx = (idx + 1) % RATES.length;
-              setPlaybackRate(RATES[nextIdx]);
+          {/* 左侧：封面 + 信息 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', flex: 1, minWidth: 0 }}>
+            <div className="player-cover">
+              {track.cover ? (
+                <img src={track.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    background: 'var(--night-raised)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--night-faint)',
+                  }}
+                >
+                  <Icon name="music" size={18} />
+                </div>
+              )}
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <p className="truncate" style={{ fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--night-text)' }}>
+                {track.title}
+              </p>
+              <p className="truncate mono" style={{ fontSize: 11, color: 'var(--night-faint)', marginTop: 2 }}>
+                {track.originalTitle ?? 'LuzzyMeow'}
+                {isPlaying && <span className="eq" style={{ marginLeft: 8, verticalAlign: 1 }}><span /><span /><span /></span>}
+              </p>
+            </div>
+          </div>
+
+          {/* 中间：控制 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', flex: '0 0 auto', justifyContent: 'center' }}>
+            <button type="button" className="icon-btn player-hide-sm" onClick={prev} aria-label="上一首">
+              <Icon name="skipBack" size={19} />
+            </button>
+            <button
+              type="button"
+              aria-label={isPlaying ? '暂停' : '播放'}
+              onClick={togglePlay}
+              style={{
+                width: 42,
+                height: 42,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                border: 0,
+                background: 'var(--accent-night)',
+                color: '#1A120C',
+                cursor: 'pointer',
+                transition: 'transform var(--duration-fast) var(--ease-out), filter var(--duration-fast) var(--ease-out)',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(1.08)')}
+              onMouseLeave={(e) => (e.currentTarget.style.filter = 'none')}
+              onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.92)')}
+              onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+            >
+              <Icon name={isPlaying ? 'pause' : 'play'} size={21} />
+            </button>
+            <button type="button" className="icon-btn player-hide-sm" onClick={next} aria-label="下一首">
+              <Icon name="skipForward" size={19} />
+            </button>
+          </div>
+
+          {/* 右侧：功能按钮 */}
+          <div
+            className="player-right"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              gap: 'var(--space-1)',
+              flex: '0 0 auto',
             }}
-            aria-label={`当前播放速度 ${playbackRate}x`}
-            style={{ fontSize: 'var(--text-xs)', width: 40, letterSpacing: '0.05em' }}
           >
-            {playbackRate}x
-          </button>
-          {/* 循环模式 */}
-          <button
-            type="button"
-            className={`neon-icon-btn ${isLyricOpen ? 'is-active' : ''}`}
-            onClick={onToggleLyric}
-            aria-label={isLyricOpen ? '关闭歌词' : '歌词'}
-            aria-pressed={isLyricOpen}
-          >
-            <Icon name="lyric" size={18} />
-          </button>
-          <button
-            type="button"
-            className={`neon-icon-btn ${isQueueOpen ? 'is-active' : ''}`}
-            onClick={onToggleQueue}
-            aria-label={isQueueOpen ? '关闭列表' : '播放列表'}
-            aria-pressed={isQueueOpen}
-          >
-            <Icon name="listMusic" size={18} />
-          </button>
-          {/* 音量控制 */}
-          <VolumeRail
-            volume={volume}
-            isMuted={isMuted}
-            onToggleMute={toggleMute}
-            onSetVolume={(v) => setVolume(v)}
-          />
-          {/* 循环模式 */}
-          <button
-            type="button"
-            className="neon-icon-btn"
-            onClick={() => {
-              const modes: LoopMode[] = ['list', 'single', 'shuffle'];
-              const idx = modes.indexOf(loopMode);
-              setLoopMode(modes[(idx + 1) % modes.length]);
-            }}
-            aria-label={`循环模式：${loopMode}`}
-          >
-            <Icon name={LOOP_ICONS[loopMode]} size={18} style={{ color: 'var(--cyan)' }} />
-          </button>
+            {/* 播放速度 */}
+            <button
+              type="button"
+              className="mono icon-btn player-hide-sm"
+              onClick={() => {
+                const idx = RATES.indexOf(playbackRate);
+                const nextIdx = (idx + 1) % RATES.length;
+                setPlaybackRate(RATES[nextIdx]);
+              }}
+              aria-label={`当前播放速度 ${playbackRate}x`}
+              style={{ fontSize: 'var(--text-xs)', width: 40, letterSpacing: '0.05em' }}
+            >
+              {playbackRate}x
+            </button>
+            {/* 歌词 */}
+            <button
+              type="button"
+              className={`icon-btn ${isLyricOpen ? 'is-active' : ''}`}
+              onClick={onToggleLyric}
+              aria-label={isLyricOpen ? '关闭歌词' : '歌词'}
+              aria-pressed={isLyricOpen}
+            >
+              <Icon name="lyric" size={17} />
+            </button>
+            {/* 播放列表 */}
+            <button
+              type="button"
+              className={`icon-btn ${isQueueOpen ? 'is-active' : ''}`}
+              onClick={onToggleQueue}
+              aria-label={isQueueOpen ? '关闭列表' : '播放列表'}
+              aria-pressed={isQueueOpen}
+            >
+              <Icon name="listMusic" size={17} />
+            </button>
+            {/* 音量控制 */}
+            <VolumeRail
+              volume={volume}
+              isMuted={isMuted}
+              onToggleMute={toggleMute}
+              onSetVolume={(v) => setVolume(v)}
+            />
+            {/* 循环模式 */}
+            <button
+              type="button"
+              className="icon-btn player-hide-sm"
+              onClick={() => {
+                const modes: LoopMode[] = ['list', 'single', 'shuffle'];
+                const idx = modes.indexOf(loopMode);
+                setLoopMode(modes[(idx + 1) % modes.length]);
+              }}
+              aria-label={`循环模式：${loopMode}`}
+            >
+              <Icon name={LOOP_ICONS[loopMode]} size={17} style={{ color: 'var(--accent-night)' }} />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -348,7 +345,7 @@ export function PlayerBar({ onToggleLyric, onToggleQueue, isLyricOpen, isQueueOp
 }
 
 /* ============================================================
-   进度条（PlayerBar 内联）
+   进度条（胶囊顶部细线）
    ============================================================ */
 function ProgressBar({ currentTime, duration, onSeek }: { currentTime: number; duration: number; onSeek: (t: number) => void }) {
   const [hover, setHover] = useState(false);
@@ -373,38 +370,40 @@ function ProgressBar({ currentTime, duration, onSeek }: { currentTime: number; d
 
   return (
     <div
-        ref={barRef}
-        role="slider"
-        aria-label="播放进度"
-        aria-valuemin={0}
-        aria-valuemax={duration}
-        aria-valuenow={currentTime}
-        tabIndex={0}
-        onClick={onBarClick}
-        onMouseMove={onBarMove}
-        onMouseEnter={() => { setHover(true); if (barRef.current) barRef.current.style.height = '6px'; }}
-        onMouseLeave={() => { setHover(false); if (barRef.current) barRef.current.style.height = '3px'; }}
-        onKeyDown={(e) => {
-          if (e.key === 'ArrowLeft') onSeek(Math.max(0, currentTime - 5));
-          if (e.key === 'ArrowRight') onSeek(Math.min(duration, currentTime + 5));
-        }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 3,
-          background: 'rgba(0,229,255,0.08)',
-          cursor: 'pointer',
-          transition: 'height 0.2s ease',
-        }}
-      >
+      ref={barRef}
+      role="slider"
+      aria-label="播放进度"
+      aria-valuemin={0}
+      aria-valuemax={duration}
+      aria-valuenow={currentTime}
+      tabIndex={0}
+      onClick={onBarClick}
+      onMouseMove={onBarMove}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowLeft') onSeek(Math.max(0, currentTime - 5));
+        if (e.key === 'ArrowRight') onSeek(Math.min(duration, currentTime + 5));
+      }}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 3,
+        background: 'rgba(237, 230, 218, 0.1)',
+        cursor: 'pointer',
+        transition: 'height 0.2s ease',
+      }}
+      onMouseOver={(e) => { e.currentTarget.style.height = '5px'; }}
+      onMouseOut={(e) => { e.currentTarget.style.height = '3px'; }}
+    >
       <div
         style={{
           width: `${progress}%`,
           height: '100%',
-          background: 'var(--grad-neon)',
-          boxShadow: '0 0 8px rgba(0,229,255,0.5)',
+          background: 'var(--accent-night)',
+          transition: 'width 0.2s linear',
         }}
       />
       {/* hover 预览线 */}
@@ -416,8 +415,7 @@ function ProgressBar({ currentTime, duration, onSeek }: { currentTime: number; d
             left: `${hoverPos}%`,
             width: 1,
             height: '100%',
-            background: 'rgba(0,229,255,0.6)',
-            boxShadow: 'var(--glow-cyan)',
+            background: 'rgba(237, 230, 218, 0.7)',
           }}
         />
       )}
@@ -426,7 +424,7 @@ function ProgressBar({ currentTime, duration, onSeek }: { currentTime: number; d
 }
 
 /* ============================================================
-   音量滑条（PlayerBar 内联）
+   音量滑条
    ============================================================ */
 function VolumeRail({
   volume,
@@ -464,6 +462,7 @@ function VolumeRail({
 
   return (
     <div
+      className="player-hide-sm"
       style={{ position: 'relative' }}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => {
@@ -473,27 +472,27 @@ function VolumeRail({
     >
       <button
         type="button"
-        className="neon-icon-btn"
+        className="icon-btn"
         onClick={onToggleMute}
         aria-label={isMuted ? '取消静音' : '静音'}
       >
-        <Icon name={isMuted ? 'volumeX' : volume > 0.5 ? 'volume2' : 'volume1'} size={18} />
+        <Icon name={isMuted ? 'volumeX' : volume > 0.5 ? 'volume2' : 'volume1'} size={17} />
       </button>
       {(show || dragging) && (
         <div
           ref={railRef}
           style={{
             position: 'absolute',
-            bottom: 42,
+            bottom: 46,
             left: '50%',
             transform: 'translateX(-50%)',
-            width: 120,
+            width: 110,
             height: 6,
-            background: 'rgba(0,229,255,0.08)',
-            borderRadius: 3,
-            border: '1px solid var(--line)',
+            background: 'rgba(237, 230, 218, 0.14)',
+            borderRadius: 'var(--radius-pill)',
+            border: '1px solid var(--night-line)',
             cursor: 'pointer',
-            padding: '2px',
+            padding: 1,
           }}
           onMouseDown={onStart}
           onMouseMove={onMove}
@@ -504,9 +503,8 @@ function VolumeRail({
             style={{
               width: `${vol * 100}%`,
               height: '100%',
-              background: 'var(--grad-neon)',
-              borderRadius: 2,
-              boxShadow: '0 0 6px rgba(0,229,255,0.4)',
+              background: 'var(--accent-night)',
+              borderRadius: 'var(--radius-pill)',
             }}
           />
         </div>

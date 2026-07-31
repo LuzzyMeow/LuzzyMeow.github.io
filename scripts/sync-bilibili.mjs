@@ -23,6 +23,14 @@ const SEASON_MID = process.env.BILI_SEASON_MID || '3690972504394108'
 // API 端点
 const API_URL = `https://api.bilibili.com/x/polymer/web-space/seasons_archives_list?season_id=${SEASON_ID}&mid=${SEASON_MID}&page_num=1&page_size=100`
 
+/**
+ * 手动覆盖表（按 BV 号）：标题里提取不到的歌名/元数据填这里，
+ * 每次同步都会保留（脚本会重建 B 站曲目，仅靠 site.json 手动改会被冲掉）
+ */
+const MANUAL_META = {
+  'BV129Vf67E8N': { originalTitle: '孤独' },
+}
+
 /** 请求 B 站 API，带 UA 和超时 */
 async function fetchSeason() {
   console.log(`拉取合集 season_id=${SEASON_ID} ...`)
@@ -41,6 +49,29 @@ async function fetchSeason() {
     const json = await res.json()
     if (json.code !== 0) throw new Error(`B站 API 错误: ${json.message ?? json.code}`)
     return json.data
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+/** 拉取 UP 主公开信息（用于动态同步头像） */
+async function fetchUserCard() {
+  console.log(`拉取 UP 主信息 mid=${SEASON_MID} ...`)
+  const ctrl = new AbortController()
+  const timer = setTimeout(() => ctrl.abort(), 15000)
+  try {
+    const res = await fetch(`https://api.bilibili.com/x/web-interface/card?mid=${SEASON_MID}`, {
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36',
+        Referer: 'https://space.bilibili.com/',
+      },
+      signal: ctrl.signal,
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const json = await res.json()
+    if (json.code !== 0) throw new Error(`B站 API 错误: ${json.message ?? json.code}`)
+    return json.data.card ?? null
   } finally {
     clearTimeout(timer)
   }
@@ -67,11 +98,11 @@ function tsToDate(ts) {
   return `${y}-${m}-${day}`
 }
 
-/** 从标题中尝试提取原唱歌手，失败返回空
+/** 从标题中尝试提取歌名，失败返回空
  *  支持格式：【沐梓溪/翻唱/孤身】、【沐梓溪/原创/琥珀色麦芽糖】等
- *  匹配所有 【...】 块，找含 /翻唱/ 或 /原创/ 的，取最后一段
+ *  匹配所有 【...】 块，找含 /翻唱/ 或 /原创/ 的，取最后一段（歌名）
  */
-function guessOriginalArtist(title) {
+function guessOriginalTitle(title) {
   const blocks = title.match(/【[^】]*】/g) || []
   for (const b of blocks) {
     const m = b.match(/\/\s*([^\/\】]+)\s*[\】]\s*$/)
@@ -109,6 +140,7 @@ async function main() {
     process.exit(1)
   }
   const site = JSON.parse(await readFile(SITE_FILE, 'utf-8'))
+  const oldAvatar = site.owner?.avatar ?? ''
   if (!Array.isArray(site.tracks)) site.tracks = []
   if (!Array.isArray(site.albums)) site.albums = []
 
@@ -120,7 +152,7 @@ async function main() {
   // 构建新的 B 站 track 列表
   const newBiliTracks = archives.map((a) => {
     const url = `https://www.bilibili.com/video/${a.bvid}/`
-    const originalArtist = guessOriginalArtist(a.title)
+    const originalTitle = guessOriginalTitle(a.title)
     const track = {
       id: `bili-${a.bvid}`,
       title: cleanTitle(a.title),
@@ -141,12 +173,50 @@ async function main() {
         losslessLabel: 'B站',
       },
     }
-    if (originalArtist) track.originalArtist = originalArtist
+    if (originalTitle) track.originalTitle = originalTitle
+    // 手动覆盖表优先级最高（保留人工填写的歌名等元数据）
+    if (MANUAL_META[a.bvid]) Object.assign(track, MANUAL_META[a.bvid])
     return track
   })
 
   // 合并：本地曲目 + B 站曲目
   site.tracks = [...localTracks, ...newBiliTracks]
+
+  // 动态同步 UP 主头像（跟随 B 站更换头像）
+  try {
+    const card = await fetchUserCard()
+    if (card?.face) {
+      site.owner = site.owner ?? {}
+      const face = card.face.startsWith('//') ? `https:${card.face}` : card.face
+      if (site.owner.avatar !== face) {
+        site.owner.avatar = face
+        console.log(`头像已更新: ${face}`)
+      } else {
+        console.log('头像无变化')
+      }
+    }
+  } catch (e) {
+    console.warn(`头像同步失败（保留原头像）: ${e.message}`)
+  }
+
+  // 实质变化检测：仅当曲目集合/标题/歌名等实质字段变化（或头像变化）时才写回提交。
+  // 播放量（view）每小时都在变，若每次都写回会导致大量重复的 chore(sync) 提交污染 git 历史。
+  const oldBili = site.tracks.filter((t) => t.bilibili)
+  const sig = (t) => {
+    const b = t.bilibili ?? {}
+    return `${b.bvid ?? t.id}|${t.title}|${t.originalTitle ?? ''}|${t.duration ?? ''}`
+  }
+  const oldSigSet = new Set(oldBili.map(sig))
+  const newSigSet = new Set(newBiliTracks.map(sig))
+  const tracksChanged =
+    oldSigSet.size !== newSigSet.size || [...oldSigSet].some((s) => !newSigSet.has(s))
+  const avatarChanged = site.owner?.avatar !== undefined && site.owner.avatar !== (oldAvatar ?? '')
+
+  if (!tracksChanged && !avatarChanged) {
+    console.log('\n无实质变化（无新增/删除曲目，标题/歌名未变），跳过写回')
+    return
+  }
+  console.log(tracksChanged ? `曲目有实质变化（${oldBili.length} → ${newBiliTracks.length} 首）` : '仅头像变化，写回')
 
   // 同步专辑信息：用合集元数据更新或创建一个专辑
   const albumId = `bili-season-${SEASON_ID}`

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { usePlayerStore } from '../../store/playerStore';
 
 /* ============================================================
-   频谱可视化 · 对数刻度 + 平滑 + 青→紫→品红渐变
+   频谱可视化 · 对数刻度 + 平滑 + 朱红柱
    ============================================================ */
 
 const BAR_COUNT = 48;
@@ -104,17 +104,13 @@ export function VisualizerBars() {
       const analyser = analyserRef.current;
       const data = dataRef.current;
       if (!analyser || !data || !isPlaying) {
-        // 静默时画底噪
+        // 静默时画底噪（墨色细柱）
         for (let i = 0; i < BAR_COUNT; i++) {
           const bw = w / BAR_COUNT;
           const x = i * bw + bw * 0.12;
           const bwDraw = bw * 0.76;
           const level = 2 + Math.random() * 1.5;
-          const ratio = i / BAR_COUNT;
-          const r = Math.floor(0 + 255 * ratio * 0.5);
-          const g = Math.floor(229 - 229 * ratio * 0.3);
-          const b = Math.floor(255 - 255 * ratio * 0.6);
-          ctx.fillStyle = `rgba(${r},${g},${b},0.14)`;
+          ctx.fillStyle = 'rgba(27, 23, 18, 0.1)';
           ctx.fillRect(x, h - level, bwDraw, level);
         }
         return;
@@ -152,16 +148,9 @@ export function VisualizerBars() {
         const x = i * bw + bw * 0.12;
         const bwDraw = bw * 0.76;
         const barH = Math.max(2, smooth * h * 0.88);
-        const ratio = i / BAR_COUNT;
-        // 青 → 紫 → 品红
-        const r = Math.floor(0 + 255 * ratio * 0.5);
-        const g = Math.floor(229 - 229 * ratio * 0.3);
-        const b = Math.floor(255 - 255 * ratio * 0.6);
-        ctx.fillStyle = `rgba(${r},${g},${b},${0.6 + smooth * 0.4})`;
+        // 朱红柱（随音量变化透明度）
+        ctx.fillStyle = `rgba(201, 65, 30, ${0.35 + smooth * 0.5})`;
         ctx.fillRect(x, h - barH, bwDraw, barH);
-        // 顶部高光
-        ctx.fillStyle = `rgba(232,240,255,${0.3 + smooth * 0.5})`;
-        ctx.fillRect(x, h - barH, bwDraw, 1.5);
       }
     };
 

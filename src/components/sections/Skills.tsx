@@ -1,10 +1,10 @@
 import type { SkillGroup } from '../../types/manifest';
 import { Icon } from '../core/Icon';
-import { NeonPanel } from '../core/NeonPanel';
-import { NeonTag } from '../core/NeonTag';
+import { Panel } from '../core/Panel';
+import { Tag } from '../core/Tag';
 
 /* ============================================================
-   技能 · 能量条（技能=青 / 兴趣=品红）
+   技能 · 分组面板：朱红刻度条 + 兴趣标签
    ============================================================ */
 
 export function Skills({ skills }: { skills?: SkillGroup[] }) {
@@ -13,53 +13,66 @@ export function Skills({ skills }: { skills?: SkillGroup[] }) {
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
         gap: 'var(--space-6)',
       }}
     >
       {skills.map((group, gi) => (
-        <NeonPanel key={group.category} className="reveal" scan={gi % 2 === 0}>
-          <p className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--pink)', letterSpacing: '0.2em', marginBottom: 'var(--space-5)' }}>
-            {String(gi + 1).padStart(2, '0')} // {group.category}
-          </p>
+        <Panel key={group.category} className="reveal" style={{ padding: 'var(--space-6)' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 'var(--space-3)',
+              marginBottom: 'var(--space-5)',
+              paddingBottom: 'var(--space-3)',
+              borderBottom: '1px solid var(--line)',
+            }}
+          >
+            <span className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--accent)' }}>
+              {String(gi + 1).padStart(2, '0')}
+            </span>
+            <h3 className="serif" style={{ fontSize: 'var(--text-lg)', fontWeight: 600 }}>
+              {group.category}
+            </h3>
+          </div>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-            {group.items.map((item) => {
-              const color = item.isHobby ? 'var(--pink)' : 'var(--cyan)';
-              return (
-                <div key={item.name}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'var(--text-sm)', color: 'var(--text-primary)' }}>
-                      {item.isHobby && <Icon name="star" size={12} style={{ color: 'var(--pink)' }} />}
-                      {item.name}
-                    </span>
-                    {typeof item.level === 'number' && (
-                      <span className="mono" style={{ fontSize: 'var(--text-xs)', color }}>{item.level}%</span>
-                    )}
-                  </div>
-                  {typeof item.level === 'number' ? (
-                    <div style={{ height: 4, background: 'rgba(0,229,255,0.08)', borderRadius: 2, overflow: 'hidden' }}>
+            {group.items.map((item) => (
+              <div key={item.name}>
+                {typeof item.level === 'number' ? (
+                  <>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'var(--text-sm)', color: 'var(--ink)' }}>
+                        {item.isHobby && <Icon name="star" size={11} style={{ color: 'var(--accent)' }} />}
+                        {item.name}
+                      </span>
+                      <span className="mono" style={{ fontSize: 'var(--text-xs)', color: 'var(--ink-faint)' }}>
+                        {item.level}%
+                      </span>
+                    </div>
+                    <div style={{ height: 3, background: 'rgba(27, 23, 18, 0.08)', borderRadius: 'var(--radius-pill)', overflow: 'hidden' }}>
                       <div
                         style={{
                           width: `${item.level}%`,
                           height: '100%',
-                          background: item.isHobby
-                            ? 'linear-gradient(90deg, var(--violet), var(--pink))'
-                            : 'linear-gradient(90deg, var(--cyan), var(--violet))',
-                          boxShadow: item.isHobby ? '0 0 8px rgba(255,45,150,0.5)' : '0 0 8px rgba(0,229,255,0.5)',
-                          borderRadius: 2,
+                          background: item.isHobby ? 'var(--ink)' : 'var(--accent)',
+                          borderRadius: 'var(--radius-pill)',
+                          transition: 'width var(--duration-slow) var(--ease-out)',
                         }}
                       />
                     </div>
-                  ) : (
-                    <div style={{ display: 'flex', gap: 6 }}>
-                      <NeonTag pink={item.isHobby}>{item.isHobby ? 'HOBBY' : 'TAG'}</NeonTag>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                  </>
+                ) : (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 'var(--text-sm)', color: 'var(--ink)' }}>
+                    {item.isHobby && <Icon name="star" size={11} style={{ color: 'var(--accent)' }} />}
+                    <Tag accent={item.isHobby}>{item.name}</Tag>
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
-        </NeonPanel>
+        </Panel>
       ))}
     </div>
   );

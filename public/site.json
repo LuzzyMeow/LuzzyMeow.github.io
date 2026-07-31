@@ -3,11 +3,14 @@
   "owner": {
     "name": "LuzzyMeow",
     "bio": "Vocal Cover · Original Music · Code & Life",
-    "avatar": "",
+    "avatar": "https://i1.hdslb.com/bfs/face/ce7a6202bf3a107185300919aebbf0c35bc15eb9.jpg",
     "about": [
-      "你好，我是 LuzzyMeow。",
-      "一个喜欢翻唱与原创的音乐爱好者，也写代码、做项目。",
-      "在这里你可以听到我的作品，看到我的项目，读到我的随笔，欢迎与我联系。"
+      "名称：｜ 沐梓溪 ｜ 鹿溪 ｜ 梓溪 ｜ 溪溪 ｜",
+      "个人信息：｜中国人｜男｜21岁（2005⁄04⁄19）｜有对象｜同性取向｜",
+      "MBTI：ISFP｜敏感、好奇、独立、容易紧张｜人多的时候我不太爱说话！！（害怕说错话）｜",
+      "好朋友（序号仅代表分组，排名不分先后）：\n［1］ ｜ 誠誠 - ChengCheng ｜ 洛囡衸YRSF ｜ ma_su ｜\n［2］ ｜ XiaobingS7 ｜ FOBoy橘籽 ｜ 小三yezpi ｜ Montley Leo ｜\n［3］ ｜ oʚ光ɞo ｜ 星野爱- ｜ 星光小太阳｜洛克-托马斯｜\n［4］ ｜ MagicFth ｜ izumi kota ｜",
+      "列出的「好朋友」代表：对我这个心理年龄低的小孩特别照顾，非常感谢有你们",
+      "多在意我一点吧，我也会对你好的"
     ],
     "location": "中国",
     "links": [
@@ -17,15 +20,15 @@
         "icon": "Github"
       },
       {
-        "label": "B站",
-        "url": "https://space.bilibili.com/",
+        "label": "哔哩哔哩",
+        "url": "https://space.bilibili.com/3690972504394108/lists/8529939?type=season",
         "icon": "Youtube"
       }
     ],
     "contact": {
-      "email": "i@luzzymeow.github.io",
+      "email": "2170206661@qq.com",
       "wechat": "",
-      "qq": "",
+      "qq": "2170206661",
       "telegram": "",
       "discord": "",
       "others": []
@@ -91,7 +94,6 @@
     {
       "id": "demo-welcome",
       "title": "Welcome (Demo)",
-      "originalArtist": "LuzzyMeow",
       "date": "2026-07-15",
       "src": "/audio/demo-welcome.mp3",
       "lyrics": "/lyrics/demo-welcome.lrc",
@@ -112,7 +114,7 @@
     {
       "id": "bili-BV129Vf67E8N",
       "title": "来自少年棋士的「孤独」- 虽然我坚强但是我也偶尔无助",
-      "date": "2026-06-01",
+      "date": "2026-06-02",
       "src": "",
       "duration": 239,
       "cover": "https://i1.hdslb.com/bfs/archive/c3bd1fc8afce024139c5392d63800259a13bb89e.jpg",
@@ -123,13 +125,14 @@
       "bilibili": {
         "bvid": "BV129Vf67E8N",
         "url": "https://www.bilibili.com/video/BV129Vf67E8N/",
-        "view": 156
+        "view": 158
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV129Vf67E8N/",
         "losslessLabel": "B站"
-      }
+      },
+      "originalTitle": "孤独"
     },
     {
       "id": "bili-BV1UQMt6SEKW",
@@ -145,14 +148,14 @@
       "bilibili": {
         "bvid": "BV1UQMt6SEKW",
         "url": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
-        "view": 469
+        "view": 471
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1UQMt6SEKW/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "孤身"
+      "originalTitle": "孤身"
     },
     {
       "id": "bili-BV1QHML6XEkX",
@@ -168,14 +171,14 @@
       "bilibili": {
         "bvid": "BV1QHML6XEkX",
         "url": "https://www.bilibili.com/video/BV1QHML6XEkX/",
-        "view": 268
+        "view": 270
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1QHML6XEkX/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "失眠飞行"
+      "originalTitle": "失眠飞行"
     },
     {
       "id": "bili-BV113Nj6qE2x",
@@ -198,7 +201,7 @@
         "lossless": "https://www.bilibili.com/video/BV113Nj6qE2x/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "别错过"
+      "originalTitle": "别错过"
     },
     {
       "id": "bili-BV1oSN46HEMV",
@@ -214,14 +217,14 @@
       "bilibili": {
         "bvid": "BV1oSN46HEMV",
         "url": "https://www.bilibili.com/video/BV1oSN46HEMV/",
-        "view": 443
+        "view": 445
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1oSN46HEMV/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "琥珀色麦芽糖"
+      "originalTitle": "琥珀色麦芽糖"
     },
     {
       "id": "bili-BV1UDNu6oER4",
@@ -237,14 +240,14 @@
       "bilibili": {
         "bvid": "BV1UDNu6oER4",
         "url": "https://www.bilibili.com/video/BV1UDNu6oER4/",
-        "view": 693
+        "view": 694
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1UDNu6oER4/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "写不完的温柔（Where Did U Go）"
+      "originalTitle": "写不完的温柔（Where Did U Go）"
     },
     {
       "id": "bili-BV1ctNC6rE6B",
@@ -260,14 +263,14 @@
       "bilibili": {
         "bvid": "BV1ctNC6rE6B",
         "url": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
-        "view": 276
+        "view": 277
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1ctNC6rE6B/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "藏"
+      "originalTitle": "藏"
     },
     {
       "id": "bili-BV1GsN96WEzx",
@@ -283,14 +286,14 @@
       "bilibili": {
         "bvid": "BV1GsN96WEzx",
         "url": "https://www.bilibili.com/video/BV1GsN96WEzx/",
-        "view": 1077
+        "view": 1079
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1GsN96WEzx/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "海底"
+      "originalTitle": "海底"
     },
     {
       "id": "bili-BV1weNi6sEHo",
@@ -313,12 +316,12 @@
         "lossless": "https://www.bilibili.com/video/BV1weNi6sEHo/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "我的悲伤是水做的"
+      "originalTitle": "我的悲伤是水做的"
     },
     {
       "id": "bili-BV1cbKL6cEHR",
       "title": "我怎么会热烈的冒失，，好想你 || 别离开我好不好",
-      "date": "2026-07-16",
+      "date": "2026-07-17",
       "src": "",
       "duration": 306,
       "cover": "https://i0.hdslb.com/bfs/archive/1534df6c28982616a3bb97573665c7627c1a2314.jpg",
@@ -336,12 +339,12 @@
         "lossless": "https://www.bilibili.com/video/BV1cbKL6cEHR/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "下雨了"
+      "originalTitle": "下雨了"
     },
     {
       "id": "bili-BV1vPKM6PEDQ",
       "title": "你还天真的以为你挂一个黄灯就会有人进你的世界安慰你？",
-      "date": "2026-07-18",
+      "date": "2026-07-19",
       "src": "",
       "duration": 181,
       "cover": "https://i0.hdslb.com/bfs/archive/71d6f823253f9a8ce8d09d123896011bd9ae7f68.jpg",
@@ -352,14 +355,14 @@
       "bilibili": {
         "bvid": "BV1vPKM6PEDQ",
         "url": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
-        "view": 1248
+        "view": 1249
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1vPKM6PEDQ/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "第57次取消发送"
+      "originalTitle": "第57次取消发送"
     },
     {
       "id": "bili-BV1vRK26CEDH",
@@ -375,14 +378,14 @@
       "bilibili": {
         "bvid": "BV1vRK26CEDH",
         "url": "https://www.bilibili.com/video/BV1vRK26CEDH/",
-        "view": 431
+        "view": 433
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1vRK26CEDH/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "光合作用"
+      "originalTitle": "光合作用"
     },
     {
       "id": "bili-BV17DK26jE9N",
@@ -398,19 +401,19 @@
       "bilibili": {
         "bvid": "BV17DK26jE9N",
         "url": "https://www.bilibili.com/video/BV17DK26jE9N/",
-        "view": 310
+        "view": 311
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV17DK26jE9N/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "春夜坠落"
+      "originalTitle": "春夜坠落"
     },
     {
       "id": "bili-BV1T8KW6aEpc",
       "title": "为什么对待感情总是 自我内耗 到 自我折磨 到 自我折磨",
-      "date": "2026-07-20",
+      "date": "2026-07-21",
       "src": "",
       "duration": 165,
       "cover": "https://i0.hdslb.com/bfs/archive/2490533884a728f092da40d02c9fefe88185417f.jpg",
@@ -428,7 +431,7 @@
         "lossless": "https://www.bilibili.com/video/BV1T8KW6aEpc/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "慢冷"
+      "originalTitle": "慢冷"
     },
     {
       "id": "bili-BV1E9gr6CENx",
@@ -451,7 +454,7 @@
         "lossless": "https://www.bilibili.com/video/BV1E9gr6CENx/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "默"
+      "originalTitle": "默"
     },
     {
       "id": "bili-BV1esgC63EXD",
@@ -474,12 +477,12 @@
         "lossless": "https://www.bilibili.com/video/BV1esgC63EXD/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "回想以前的我们"
+      "originalTitle": "回想以前的我们"
     },
     {
       "id": "bili-BV13N356xEXP",
       "title": "对不起，我错了，对不起，我真的很喜欢你，原谅我好不好",
-      "date": "2026-07-25",
+      "date": "2026-07-26",
       "src": "",
       "duration": 296,
       "cover": "https://i0.hdslb.com/bfs/archive/e664afc8dee2988593b86524e0642cff1a7612f8.jpg",
@@ -497,7 +500,7 @@
         "lossless": "https://www.bilibili.com/video/BV13N356xEXP/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "海屿你"
+      "originalTitle": "海屿你"
     },
     {
       "id": "bili-BV1Np3t6HEhx",
@@ -513,14 +516,14 @@
       "bilibili": {
         "bvid": "BV1Np3t6HEhx",
         "url": "https://www.bilibili.com/video/BV1Np3t6HEhx/",
-        "view": 254
+        "view": 255
       },
       "download": {
         "mp3": "",
         "lossless": "https://www.bilibili.com/video/BV1Np3t6HEhx/",
         "losslessLabel": "B站"
       },
-      "originalArtist": "受难曲"
+      "originalTitle": "受难曲"
     }
   ],
   "albums": [

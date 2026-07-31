@@ -48,3 +48,7 @@ pnpm-debug.log*
 # *.wav
 # *.flac
 # *.ape
+
+# 本地工具/临时目录
+.zcode/
+.uploads/
